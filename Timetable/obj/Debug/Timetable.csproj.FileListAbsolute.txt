@@ -1,0 +1,10 @@
+C:\Project\CSharpProject\Timetable\Timetable\bin\Debug\Timetable.exe.config
+C:\Project\CSharpProject\Timetable\Timetable\bin\Debug\Timetable.exe
+C:\Project\CSharpProject\Timetable\Timetable\bin\Debug\Timetable.pdb
+C:\Project\CSharpProject\Timetable\Timetable\obj\Debug\Timetable.csprojAssemblyReference.cache
+C:\Project\CSharpProject\Timetable\Timetable\obj\Debug\Timetable.Form1.resources
+C:\Project\CSharpProject\Timetable\Timetable\obj\Debug\Timetable.Properties.Resources.resources
+C:\Project\CSharpProject\Timetable\Timetable\obj\Debug\Timetable.csproj.GenerateResource.cache
+C:\Project\CSharpProject\Timetable\Timetable\obj\Debug\Timetable.csproj.CoreCompileInputs.cache
+C:\Project\CSharpProject\Timetable\Timetable\obj\Debug\Timetable.exe
+C:\Project\CSharpProject\Timetable\Timetable\obj\Debug\Timetable.pdb
