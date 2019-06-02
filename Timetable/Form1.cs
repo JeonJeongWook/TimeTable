@@ -16,6 +16,11 @@ namespace Timetable
         {
             InitializeComponent();
         }
+
+        private void mon1_Click(object sender, EventArgs e)
+        {
+            mon1.BackColor = Color.Blue;
+        }
     }
 }
 /*
