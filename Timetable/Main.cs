@@ -10,21 +10,17 @@ using System.Windows.Forms;
 
 namespace Timetable
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
-        public Form1()
+        public Main()
         {
             InitializeComponent();
         }
 
         private void mon1_Click(object sender, EventArgs e)
         {
-            mon1.BackColor = Color.Blue;
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //colorDialog1.ShowDialog();
+            mon1.BackColor = Color.Aquamarine;
         }
 
         private void p_backColor_Click(object sender, EventArgs e)
@@ -36,10 +32,18 @@ namespace Timetable
             }
         }
 
+        public void paint(int i)
+        {
+            int a = i % 2;
+        }
+
+
     }
 }
 /*표
  * 추가하기 - 수업명, 교수명, 장소, 시간
  * 삭제하기 - 해당 시간만 삭제(ex - 1~4교시중 2교시만 지우면 1,3~4교시(독립적))
  * 프레셋 추가하기 - 리스트 박스에 프리셋 저장
+ * 
+ * 삽입(update) 함수 - 배경색(backGroundColor), 글씨색(FontColor), 글씨포함(insertText)
  */
