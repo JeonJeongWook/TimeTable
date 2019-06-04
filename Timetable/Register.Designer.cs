@@ -44,23 +44,24 @@
             this.button1.Location = new System.Drawing.Point(175, 246);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 28);
-            this.button1.TabIndex = 9;
+            this.button1.TabIndex = 7;
             this.button1.Text = "가입완료";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(228, 146);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(168, 25);
-            this.textBox2.TabIndex = 7;
+            this.textBox2.TabIndex = 4;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(228, 105);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(168, 25);
-            this.textBox1.TabIndex = 8;
+            this.textBox1.TabIndex = 2;
             // 
             // label3
             // 
@@ -68,7 +69,7 @@
             this.label3.Location = new System.Drawing.Point(137, 149);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 15);
-            this.label3.TabIndex = 5;
+            this.label3.TabIndex = 3;
             this.label3.Text = "비밀번호";
             // 
             // label2
@@ -77,7 +78,7 @@
             this.label2.Location = new System.Drawing.Point(137, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 15);
-            this.label2.TabIndex = 6;
+            this.label2.TabIndex = 1;
             this.label2.Text = "아이디";
             // 
             // label1
@@ -88,7 +89,7 @@
             this.label1.Location = new System.Drawing.Point(159, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(216, 48);
-            this.label1.TabIndex = 4;
+            this.label1.TabIndex = 0;
             this.label1.Text = "회원가입";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -106,16 +107,17 @@
             this.textBox3.Location = new System.Drawing.Point(228, 188);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(168, 25);
-            this.textBox3.TabIndex = 7;
+            this.textBox3.TabIndex = 6;
             // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(281, 246);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(83, 28);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "취소";
+            this.button2.TabIndex = 8;
+            this.button2.Text = "돌아가기";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Register
             // 
