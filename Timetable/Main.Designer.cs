@@ -53,12 +53,10 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.p_backColor = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb_place = new System.Windows.Forms.TextBox();
+            this.tb_professor = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.tb_classN = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -66,11 +64,12 @@
             this.mon1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.수업명 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.교수명 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.장소 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.classN = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.professor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.place = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -282,18 +281,19 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(566, 467);
+            this.button1.Location = new System.Drawing.Point(566, 416);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 41);
+            this.button1.Size = new System.Drawing.Size(89, 41);
             this.button1.TabIndex = 3;
             this.button1.Text = "추가하기";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(711, 467);
+            this.button2.Location = new System.Drawing.Point(659, 416);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 41);
+            this.button2.Size = new System.Drawing.Size(89, 41);
             this.button2.TabIndex = 3;
             this.button2.Text = "삭제하기";
             this.button2.UseVisualStyleBackColor = true;
@@ -305,24 +305,22 @@
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.p_backColor);
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.tb_place);
+            this.panel1.Controls.Add(this.tb_professor);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.tb_classN);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(566, 217);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(275, 225);
+            this.panel1.Size = new System.Drawing.Size(275, 187);
             this.panel1.TabIndex = 4;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(61, 184);
+            this.checkBox1.Location = new System.Drawing.Point(61, 152);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(89, 19);
             this.checkBox1.TabIndex = 5;
@@ -332,15 +330,16 @@
             // p_fontColor
             // 
             this.p_fontColor.BackColor = System.Drawing.Color.Black;
-            this.p_fontColor.Location = new System.Drawing.Point(221, 146);
+            this.p_fontColor.Location = new System.Drawing.Point(221, 114);
             this.p_fontColor.Name = "p_fontColor";
             this.p_fontColor.Size = new System.Drawing.Size(27, 26);
             this.p_fontColor.TabIndex = 3;
+            this.p_fontColor.Click += new System.EventHandler(this.p_fontColor_Click);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(163, 150);
+            this.label23.Location = new System.Drawing.Point(163, 118);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(52, 15);
             this.label23.TabIndex = 4;
@@ -349,7 +348,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(58, 150);
+            this.label22.Location = new System.Drawing.Point(58, 118);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(57, 15);
             this.label22.TabIndex = 3;
@@ -358,32 +357,25 @@
             // p_backColor
             // 
             this.p_backColor.BackColor = System.Drawing.Color.Black;
-            this.p_backColor.Location = new System.Drawing.Point(121, 146);
+            this.p_backColor.Location = new System.Drawing.Point(121, 114);
             this.p_backColor.Name = "p_backColor";
             this.p_backColor.Size = new System.Drawing.Size(27, 26);
             this.p_backColor.TabIndex = 2;
             this.p_backColor.Click += new System.EventHandler(this.p_backColor_Click);
             // 
-            // textBox4
+            // tb_place
             // 
-            this.textBox4.Location = new System.Drawing.Point(61, 112);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(187, 25);
-            this.textBox4.TabIndex = 1;
+            this.tb_place.Location = new System.Drawing.Point(61, 78);
+            this.tb_place.Name = "tb_place";
+            this.tb_place.Size = new System.Drawing.Size(187, 25);
+            this.tb_place.TabIndex = 1;
             // 
-            // textBox3
+            // tb_professor
             // 
-            this.textBox3.Location = new System.Drawing.Point(61, 78);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(187, 25);
-            this.textBox3.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(61, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(187, 25);
-            this.textBox2.TabIndex = 1;
+            this.tb_professor.Location = new System.Drawing.Point(61, 46);
+            this.tb_professor.Name = "tb_professor";
+            this.tb_professor.Size = new System.Drawing.Size(187, 25);
+            this.tb_professor.TabIndex = 1;
             // 
             // label6
             // 
@@ -394,21 +386,12 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "배경색";
             // 
-            // textBox1
+            // tb_classN
             // 
-            this.textBox1.Location = new System.Drawing.Point(61, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(187, 25);
-            this.textBox1.TabIndex = 1;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2, 115);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 15);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "시간";
+            this.tb_classN.Location = new System.Drawing.Point(61, 12);
+            this.tb_classN.Name = "tb_classN";
+            this.tb_classN.Size = new System.Drawing.Size(187, 25);
+            this.tb_classN.TabIndex = 1;
             // 
             // label3
             // 
@@ -485,9 +468,9 @@
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.수업명,
-            this.교수명,
-            this.장소});
+            this.classN,
+            this.professor,
+            this.place});
             this.listView1.Location = new System.Drawing.Point(566, 86);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(295, 125);
@@ -495,20 +478,20 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // 수업명
+            // classN
             // 
-            this.수업명.Text = "수업명";
-            this.수업명.Width = 95;
+            this.classN.Text = "수업명";
+            this.classN.Width = 95;
             // 
-            // 교수명
+            // professor
             // 
-            this.교수명.Text = "교수명";
-            this.교수명.Width = 83;
+            this.professor.Text = "교수명";
+            this.professor.Width = 83;
             // 
-            // 장소
+            // place
             // 
-            this.장소.Text = "장소";
-            this.장소.Width = 112;
+            this.place.Text = "장소";
+            this.place.Width = 112;
             // 
             // label24
             // 
@@ -529,6 +512,15 @@
             this.label25.TabIndex = 8;
             this.label25.Text = "님 환영합니다!";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(752, 416);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(89, 41);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "복사하기";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -540,6 +532,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -565,11 +558,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tb_place;
+        private System.Windows.Forms.TextBox tb_professor;
+        private System.Windows.Forms.TextBox tb_classN;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -593,15 +584,16 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader 수업명;
-        private System.Windows.Forms.ColumnHeader 교수명;
-        private System.Windows.Forms.ColumnHeader 장소;
+        private System.Windows.Forms.ColumnHeader classN;
+        private System.Windows.Forms.ColumnHeader professor;
+        private System.Windows.Forms.ColumnHeader place;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel p_fontColor;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button button3;
     }
 }
 

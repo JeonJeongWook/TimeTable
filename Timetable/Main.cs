@@ -32,12 +32,29 @@ namespace Timetable
             }
         }
 
-        public void paint(int i)
+        private void p_fontColor_Click(object sender, EventArgs e)
         {
-            int a = i % 2;
+            ColorDialog fontcolor = new ColorDialog();
+            if (fontcolor.ShowDialog() == DialogResult.OK)
+            {
+                p_fontColor.BackColor = fontcolor.Color;
+            }
         }
 
+        //추가하기 버튼 클릭시 입력 정보가 listview1에 추가
+        //https://freeprog.tistory.com/232
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ListViewItem additem = new ListViewItem();
+            string classN, professor, place;
+            classN = tb_classN.Text;
+            professor = tb_professor.Text;
+            place = tb_place.Text;
 
+
+            additem = new ListViewItem(new string[] { classN, professor, place });
+            listView1.Items.Add(additem);
+        }
     }
 }
 /*표
