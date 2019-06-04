@@ -297,6 +297,7 @@
             this.button2.TabIndex = 3;
             this.button2.Text = "삭제하기";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel1
             // 
@@ -471,6 +472,7 @@
             this.classN,
             this.professor,
             this.place});
+            this.listView1.FullRowSelect = true;
             this.listView1.Location = new System.Drawing.Point(566, 86);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(295, 125);

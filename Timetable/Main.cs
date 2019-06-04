@@ -55,6 +55,13 @@ namespace Timetable
             additem = new ListViewItem(new string[] { classN, professor, place });
             listView1.Items.Add(additem);
         }
+
+        //listview1에 선택된 행 삭제
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int index = listView1.FocusedItem.Index;
+            listView1.Items.RemoveAt(index);
+        }
     }
 }
 /*표
