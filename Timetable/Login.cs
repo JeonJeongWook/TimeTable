@@ -23,7 +23,9 @@ namespace Timetable
         {
             if(tb_id.Text.Equals("admin") && tb_passwd.Text.Equals("1234"))
             {
-                Application.Run(new Main());
+                this.Visible = false;
+                Main main = new Main();
+                main.Show();
             }
             else
             {
