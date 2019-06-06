@@ -315,7 +315,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(566, 217);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(275, 187);
+            this.panel1.Size = new System.Drawing.Size(295, 187);
             this.panel1.TabIndex = 4;
             // 
             // checkBox1
@@ -523,6 +523,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "복사하기";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Main
             // 

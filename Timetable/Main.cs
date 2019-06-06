@@ -62,6 +62,18 @@ namespace Timetable
             int index = listView1.FocusedItem.Index;
             listView1.Items.RemoveAt(index);
         }
+
+        //선택된 아이템 복사
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //ListViewItem copyitem = new ListViewItem();
+            int index = listView1.FocusedItem.Index;
+
+            foreach (ListViewItem item in listView1.Items)
+            {
+                listView1.Items.Add((ListViewItem)item.Clone());
+            }
+        }
     }
 }
 /*표
