@@ -17,9 +17,7 @@ namespace Timetable
         int celCol = 0;
         int celRow = 0;
         int[] cell;
-        Dictionary<Point, Color> cellcolors = new Dictionary<Point, Color>();
-        //cellcolors.Add(new Point(0, 1), Color.CadetBlue);
-        //cellcolors.Add(new Point(2, 4), Color.Blue);
+        Dictionary<Point, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
 
         public Main()
         {
@@ -32,6 +30,7 @@ namespace Timetable
             p_mon1.BackColor = color;
         }
 
+        //배경색 변경
         private void p_backColor_Click(object sender, EventArgs e)
         {
             ColorDialog backcolor = new ColorDialog();
@@ -46,6 +45,7 @@ namespace Timetable
             }
         }
 
+        //폰트색 변경
         private void p_fontColor_Click(object sender, EventArgs e)
         {
             ColorDialog fontcolor = new ColorDialog();
@@ -101,22 +101,27 @@ namespace Timetable
             }
         }
 
+
         private void p_mon1_Click(object sender, EventArgs e)
         {
             p_mon1.BackColor = color;
         }
 
-
+        //테이블 레이아웃패널 클릭 시 좌표 검색
         private void tableLayoutPanel1_Click(object sender, EventArgs e)
         {
             var cellPos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
-            MessageBox.Show("tablelayoutPanel : " + celCol + " / " + celRow + " / " + cell[0] + "," + cell[1]);
-            cellcolors.Add(new Point(0, 1), Color.CadetBlue);
-            cellcolors.Add(new Point(2, 4), Color.Blue);
+            //MessageBox.Show(cellPos.Value+"");
+            MessageBox.Show("tablelayoutPanel : " + cellPos);
+
+            //해당 셀 컬러 삭제 후 추가
+            cellcolors.Remove(new Point(celRow, celCol));
+            cellcolors.Add(new Point(celRow, celCol), color);
+
         }
 
         //해당하는 테이블 레이아웃 클릭시
-        int[] GetRowColIndex(TableLayoutPanel tlp, Point point)
+        Point? GetRowColIndex(TableLayoutPanel tlp, Point point)
         {
             if (point.X > tlp.Width || point.Y > tlp.Height)
                 return null;
@@ -138,21 +143,12 @@ namespace Timetable
             this.celCol = int.Parse(col + "");
             this.celRow = int.Parse(row + "");
             cell = new int[2] { celCol, celRow };
-            return cell;
+            return new Point(col, row);
         }
 
-        void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        //셀 생성시 그리기
+        private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
-            //MessageBox.Show("" + e.CellBounds);
-            //if (celRow == e.Row)
-            //{
-            //    if (celCol == e.Column)
-            //    {
-            //        using (SolidBrush brush = new SolidBrush(color))e.Graphics.FillRectangle(brush, e.CellBounds);
-            //    }
-            //}
-            //else
-            //    using (SolidBrush brush = new SolidBrush(Color.FromArgb(123, 234, 0)))e.Graphics.FillRectangle(brush, e.CellBounds);
             if (cellcolors.Keys.Contains(new Point(e.Column, e.Row)))
                 using (SolidBrush brush = new SolidBrush(cellcolors[new Point(e.Column, e.Row)]))
                     e.Graphics.FillRectangle(brush, e.CellBounds);
@@ -161,6 +157,18 @@ namespace Timetable
 
             }
         }
+
+        void cell_RePaint(object sender, TableLayoutCellPaintEventArgs e)
+        {
+            if (cellcolors.Keys.Contains(new Point(e.Column, e.Row)))
+                using (SolidBrush brush = new SolidBrush(cellcolors[new Point(e.Column, e.Row)]))
+                    e.Graphics.FillRectangle(brush, e.CellBounds);
+            else
+            {
+
+            }
+        }
+
 
         //테이블 기본 배경색 변경
         private void Main_Load(object sender, EventArgs e)
