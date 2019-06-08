@@ -13,11 +13,13 @@ namespace Timetable
     public partial class Main : Form
     {
         ListViewItem lvi = new ListViewItem();
-        Color color;
+        Color backcolor = Color.Black;
+        Color fontcolor = Color.White;
         int celCol = 0;
         int celRow = 0;
         int[] cell;
         Dictionary<Point, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
+        Graphics graphic;
 
         public Main()
         {
@@ -27,7 +29,7 @@ namespace Timetable
         private void mon1_Click(object sender, EventArgs e)
         {
 
-            p_mon1.BackColor = color;
+            p_mon1.BackColor = backcolor;
         }
 
         //배경색 변경
@@ -37,7 +39,7 @@ namespace Timetable
             if (backcolor.ShowDialog() == DialogResult.OK)
             {
                 p_backColor.BackColor = backcolor.Color;
-                color = p_backColor.BackColor;
+                this.backcolor = p_backColor.BackColor;
             }
             else
             {
@@ -104,7 +106,7 @@ namespace Timetable
 
         private void p_mon1_Click(object sender, EventArgs e)
         {
-            p_mon1.BackColor = color;
+            p_mon1.BackColor = backcolor;
         }
 
         //테이블 레이아웃패널 클릭 시 좌표 검색
@@ -116,8 +118,22 @@ namespace Timetable
 
             //해당 셀 컬러 삭제 후 추가
             cellcolors.Remove(new Point(celRow, celCol));
-            cellcolors.Add(new Point(celRow, celCol), color);
+            cellcolors.Add(new Point(celRow, celCol), backcolor);
+            //cell_RePaint(celCol, celRow);
 
+        }
+
+        private void cell_RePaint(int a, int b)
+        {
+            //if (cellcolors.Keys.Contains(new Point(a, b)))
+            //    using (SolidBrush brush = new SolidBrush(cellcolors[new Point(a, b)]))
+            //    {
+            //        graphic.FillRectangle(brush, e.CellBounds);
+            //    }
+            //else
+            //{
+
+            //}
         }
 
         //해당하는 테이블 레이아웃 클릭시
@@ -153,21 +169,11 @@ namespace Timetable
                 using (SolidBrush brush = new SolidBrush(cellcolors[new Point(e.Column, e.Row)]))
                     e.Graphics.FillRectangle(brush, e.CellBounds);
             else
-            {
-
-            }
-        }
-
-        void cell_RePaint(object sender, TableLayoutCellPaintEventArgs e)
-        {
-            if (cellcolors.Keys.Contains(new Point(e.Column, e.Row)))
-                using (SolidBrush brush = new SolidBrush(cellcolors[new Point(e.Column, e.Row)]))
+                using (SolidBrush brush = new SolidBrush(SystemColors.ControlDark))
                     e.Graphics.FillRectangle(brush, e.CellBounds);
-            else
-            {
-
-            }
         }
+
+
 
 
         //테이블 기본 배경색 변경
