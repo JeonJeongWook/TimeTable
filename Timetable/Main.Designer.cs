@@ -61,7 +61,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.mon1 = new System.Windows.Forms.Panel();
+            this.p_mon1 = new System.Windows.Forms.Panel();
+            this.lb_mon1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.classN = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -74,6 +75,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.p_mon1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -284,7 +286,7 @@
             this.button1.Location = new System.Drawing.Point(566, 416);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(89, 41);
-            this.button1.TabIndex = 3;
+            this.button1.TabIndex = 1;
             this.button1.Text = "추가하기";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -294,7 +296,7 @@
             this.button2.Location = new System.Drawing.Point(659, 416);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(89, 41);
-            this.button2.TabIndex = 3;
+            this.button2.TabIndex = 2;
             this.button2.Text = "삭제하기";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -316,7 +318,7 @@
             this.panel1.Location = new System.Drawing.Point(566, 217);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(295, 187);
-            this.panel1.TabIndex = 4;
+            this.panel1.TabIndex = 0;
             // 
             // checkBox1
             // 
@@ -334,7 +336,7 @@
             this.p_fontColor.Location = new System.Drawing.Point(221, 114);
             this.p_fontColor.Name = "p_fontColor";
             this.p_fontColor.Size = new System.Drawing.Size(27, 26);
-            this.p_fontColor.TabIndex = 3;
+            this.p_fontColor.TabIndex = 4;
             this.p_fontColor.Click += new System.EventHandler(this.p_fontColor_Click);
             // 
             // label23
@@ -361,7 +363,7 @@
             this.p_backColor.Location = new System.Drawing.Point(121, 114);
             this.p_backColor.Name = "p_backColor";
             this.p_backColor.Size = new System.Drawing.Size(27, 26);
-            this.p_backColor.TabIndex = 2;
+            this.p_backColor.TabIndex = 3;
             this.p_backColor.Click += new System.EventHandler(this.p_backColor_Click);
             // 
             // tb_place
@@ -369,7 +371,7 @@
             this.tb_place.Location = new System.Drawing.Point(61, 78);
             this.tb_place.Name = "tb_place";
             this.tb_place.Size = new System.Drawing.Size(187, 25);
-            this.tb_place.TabIndex = 1;
+            this.tb_place.TabIndex = 2;
             // 
             // tb_professor
             // 
@@ -392,7 +394,7 @@
             this.tb_classN.Location = new System.Drawing.Point(61, 12);
             this.tb_classN.Name = "tb_classN";
             this.tb_classN.Size = new System.Drawing.Size(187, 25);
-            this.tb_classN.TabIndex = 1;
+            this.tb_classN.TabIndex = 0;
             // 
             // label3
             // 
@@ -430,7 +432,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Controls.Add(this.mon1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.p_mon1, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(78, 69);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
@@ -447,15 +449,25 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(461, 497);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // mon1
+            // p_mon1
             // 
-            this.mon1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mon1.Location = new System.Drawing.Point(1, 1);
-            this.mon1.Margin = new System.Windows.Forms.Padding(0);
-            this.mon1.Name = "mon1";
-            this.mon1.Size = new System.Drawing.Size(90, 48);
-            this.mon1.TabIndex = 0;
-            this.mon1.Click += new System.EventHandler(this.mon1_Click);
+            this.p_mon1.Controls.Add(this.lb_mon1);
+            this.p_mon1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.p_mon1.Location = new System.Drawing.Point(1, 1);
+            this.p_mon1.Margin = new System.Windows.Forms.Padding(0);
+            this.p_mon1.Name = "p_mon1";
+            this.p_mon1.Size = new System.Drawing.Size(90, 48);
+            this.p_mon1.TabIndex = 0;
+            this.p_mon1.Click += new System.EventHandler(this.mon1_Click);
+            // 
+            // lb_mon1
+            // 
+            this.lb_mon1.AutoSize = true;
+            this.lb_mon1.Location = new System.Drawing.Point(3, 0);
+            this.lb_mon1.Name = "lb_mon1";
+            this.lb_mon1.Size = new System.Drawing.Size(45, 15);
+            this.lb_mon1.TabIndex = 0;
+            this.lb_mon1.Text = "label4";
             // 
             // label5
             // 
@@ -472,14 +484,16 @@
             this.classN,
             this.professor,
             this.place});
+            this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(566, 86);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(295, 125);
-            this.listView1.TabIndex = 7;
+            this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.Click += new System.EventHandler(this.listView1_Click);
             // 
             // classN
             // 
@@ -550,6 +564,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.p_mon1.ResumeLayout(false);
+            this.p_mon1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -568,7 +584,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel mon1;
+        private System.Windows.Forms.Panel p_mon1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel p_backColor;
         private System.Windows.Forms.Label label5;
@@ -598,6 +614,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label lb_mon1;
     }
 }
 

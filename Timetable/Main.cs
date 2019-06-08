@@ -12,6 +12,11 @@ namespace Timetable
 {
     public partial class Main : Form
     {
+        ListViewItem lvi = new ListViewItem();
+        Color color;
+        int celCol = 0;
+        int celRow = 0;
+        int[] cell;
         public Main()
         {
             InitializeComponent();
@@ -20,7 +25,7 @@ namespace Timetable
         private void mon1_Click(object sender, EventArgs e)
         {
 
-            mon1.BackColor = Color.Aquamarine;
+            p_mon1.BackColor = color;
         }
 
         private void p_backColor_Click(object sender, EventArgs e)
@@ -29,6 +34,11 @@ namespace Timetable
             if (backcolor.ShowDialog() == DialogResult.OK)
             {
                 p_backColor.BackColor = backcolor.Color;
+                color = p_backColor.BackColor;
+            }
+            else
+            {
+                MessageBox.Show("asd");
             }
         }
 
@@ -45,15 +55,16 @@ namespace Timetable
         //https://freeprog.tistory.com/232
         private void button1_Click(object sender, EventArgs e)
         {
-            ListViewItem additem = new ListViewItem();
             string classN, professor, place;
             classN = tb_classN.Text;
             professor = tb_professor.Text;
             place = tb_place.Text;
 
-
-            additem = new ListViewItem(new string[] { classN, professor, place });
-            listView1.Items.Add(additem);
+            lvi = new ListViewItem(new string[] { classN, professor, place });
+            listView1.Items.Add(lvi);
+            tb_classN.Text = "";
+            tb_professor.Text = "";
+            tb_place.Text = "";
         }
 
         //listview1에 선택된 행 삭제
@@ -61,19 +72,73 @@ namespace Timetable
         {
             int index = listView1.FocusedItem.Index;
             listView1.Items.RemoveAt(index);
+            tb_classN.Text = "";
+            tb_professor.Text = "";
+            tb_place.Text = "";
         }
 
         //선택된 아이템 복사
         private void button3_Click(object sender, EventArgs e)
         {
-            //ListViewItem copyitem = new ListViewItem();
             int index = listView1.FocusedItem.Index;
+            ListViewItem copyitem = new ListViewItem();
+            string classN, professor, place;
 
-            foreach (ListViewItem item in listView1.Items)
+        }
+
+        //해당 행을 클릭할 시 텍스트
+        private void listView1_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count > 0)
             {
-                listView1.Items.Add((ListViewItem)item.Clone());
+                tb_classN.Text = listView1.SelectedItems[0].SubItems[0].Text;
+                tb_professor.Text = listView1.SelectedItems[0].SubItems[1].Text;
+                tb_place.Text = listView1.SelectedItems[0].SubItems[2].Text;
             }
         }
+
+        //private void tableLayoutPanel1_Click(object sender, EventArgs e)
+        //{
+        //    var cellPos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
+        //    MessageBox.Show("tablelayoutPanel : " + celCol + " / " + celRow + " / " + cell[0] +"," + cell[1]);
+           
+        //}
+
+        ////해당하는 테이블 레이아웃 클릭시
+        //int[] GetRowColIndex(TableLayoutPanel tlp, Point point)
+        //{
+        //    if (point.X > tlp.Width || point.Y > tlp.Height)
+        //        return null;
+
+        //    int w = tlp.Width;
+        //    int h = tlp.Height;
+        //    int[] widths = tlp.GetColumnWidths();
+
+        //    int i;
+        //    for (i = widths.Length - 1; i >= 0 && point.X < w; i--)
+        //        w -= widths[i];
+        //    int col = i + 1;
+
+        //    int[] heights = tlp.GetRowHeights();
+        //    for (i = heights.Length - 1; i >= 0 && point.Y < h; i--)
+        //        h -= heights[i];
+
+        //    int row = i + 1;
+        //    this.celCol = int.Parse(col + "");
+        //    this.celRow = int.Parse(row + "");
+        //    cell = new int[2] { celCol, celRow };
+        //    return cell;
+        //}
+
+        //private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        //{
+        //    if (e.Row == e.Column)
+        //        using (SolidBrush brush = new SolidBrush(Color.AliceBlue))
+        //            e.Graphics.FillRectangle(brush, e.CellBounds);
+        //    else
+        //        using (SolidBrush brush = new SolidBrush(Color.FromArgb(123, 234, 0)))
+        //            e.Graphics.FillRectangle(brush, e.CellBounds);
+        //}
     }
 }
 /*표
