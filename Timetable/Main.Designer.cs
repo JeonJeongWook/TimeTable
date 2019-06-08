@@ -448,6 +448,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(461, 497);
             this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel1_CellPaint);
+            this.tableLayoutPanel1.Click += new System.EventHandler(this.tableLayoutPanel1_Click);
             // 
             // p_mon1
             // 
@@ -458,7 +460,6 @@
             this.p_mon1.Name = "p_mon1";
             this.p_mon1.Size = new System.Drawing.Size(90, 48);
             this.p_mon1.TabIndex = 0;
-            this.p_mon1.Click += new System.EventHandler(this.mon1_Click);
             // 
             // lb_mon1
             // 
@@ -557,6 +558,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Main";
             this.Text = "Timetable";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
