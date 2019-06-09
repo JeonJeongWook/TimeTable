@@ -12,14 +12,20 @@ namespace Timetable
 {
     public partial class Main : Form
     {
-        ListViewItem lvi = new ListViewItem();
+        //ListViewItem lvi = new ListViewItem();
+        ListViewItem lvi = new ListViewItem(new string[] {});
         Color backcolor = Color.Black;
         Color fontcolor = Color.White;
-        int celCol = 0;
-        int celRow = 0;
-        int[] cell;
-        Dictionary<Point, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
-        Graphics graphic;
+        String classN, professor, place;
+        //int celCol = 0;
+        //int celRow = 0;
+        //int[] cell;
+        //Dictionary<Point, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
+
+
+
+
+
 
         public Main()
         {
@@ -43,7 +49,6 @@ namespace Timetable
             }
             else
             {
-                MessageBox.Show("asd");
             }
         }
 
@@ -57,15 +62,26 @@ namespace Timetable
             }
         }
 
+        //해당 행을 클릭할 시 텍스트
+        private void listView1_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count > 0)
+            {
+                tb_classN.Text = listView1.SelectedItems[0].SubItems[0].Text;
+                tb_professor.Text = listView1.SelectedItems[0].SubItems[1].Text;
+                tb_place.Text = listView1.SelectedItems[0].SubItems[2].Text;
+            }
+        }
+
         //추가하기 버튼 클릭시 입력 정보가 listview1에 추가
         //https://freeprog.tistory.com/232
         private void button1_Click(object sender, EventArgs e)
         {
-            string classN, professor, place;
             classN = tb_classN.Text;
             professor = tb_professor.Text;
             place = tb_place.Text;
 
+            //lvi = new ListViewItem(new string[] { classN, professor, place });
             lvi = new ListViewItem(new string[] { classN, professor, place });
             listView1.Items.Add(lvi);
             tb_classN.Text = "";
@@ -86,107 +102,97 @@ namespace Timetable
         //선택된 아이템 복사
         private void button3_Click(object sender, EventArgs e)
         {
-            int index = listView1.FocusedItem.Index;
-            ListViewItem copyitem = new ListViewItem();
-            string classN, professor, place;
+            classN = tb_classN.Text;
+            professor = tb_professor.Text;
+            place = tb_place.Text;
+            lvi = new ListViewItem(new string[] { classN, professor, place });
+            listView1.Items.Add(lvi);
 
         }
 
-        //해당 행을 클릭할 시 텍스트
-        private void listView1_Click(object sender, EventArgs e)
-        {
-            if (listView1.SelectedIndices.Count > 0)
-            {
-                tb_classN.Text = listView1.SelectedItems[0].SubItems[0].Text;
-                tb_professor.Text = listView1.SelectedItems[0].SubItems[1].Text;
-                tb_place.Text = listView1.SelectedItems[0].SubItems[2].Text;
-            }
-        }
+
 
 
         private void p_mon1_Click(object sender, EventArgs e)
         {
+            //lb_mon1.Text = tb_classN.Text;
+            //p_mon1.BackColor = backcolor;
+            insertContents();
+        }
+
+        void insertContents(/*Label label*/) {
+            lb_mon1.Text = classN;
+            lb_mon1.ForeColor = fontcolor;
             p_mon1.BackColor = backcolor;
-        }
-
-        //테이블 레이아웃패널 클릭 시 좌표 검색
-        private void tableLayoutPanel1_Click(object sender, EventArgs e)
-        {
-            var cellPos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
-            //MessageBox.Show(cellPos.Value+"");
-            MessageBox.Show("tablelayoutPanel : " + cellPos);
-
-            //해당 셀 컬러 삭제 후 추가
-            cellcolors.Remove(new Point(celRow, celCol));
-            cellcolors.Add(new Point(celRow, celCol), backcolor);
-            //cell_RePaint(celCol, celRow);
 
         }
 
-        private void cell_RePaint(int a, int b)
-        {
-            //if (cellcolors.Keys.Contains(new Point(a, b)))
-            //    using (SolidBrush brush = new SolidBrush(cellcolors[new Point(a, b)]))
-            //    {
-            //        graphic.FillRectangle(brush, e.CellBounds);
-            //    }
-            //else
-            //{
 
-            //}
-        }
 
-        //해당하는 테이블 레이아웃 클릭시
-        Point? GetRowColIndex(TableLayoutPanel tlp, Point point)
-        {
-            if (point.X > tlp.Width || point.Y > tlp.Height)
-                return null;
+        ////해당하는 테이블 레이아웃 클릭시
+        //Point? GetRowColIndex(TableLayoutPanel tlp, Point point)
+        //{
+        //    if (point.X > tlp.Width || point.Y > tlp.Height)
+        //        return null;
             
-            int w = tlp.Width;
-            int h = tlp.Height;
-            int[] widths = tlp.GetColumnWidths();
+        //    int w = tlp.Width;
+        //    int h = tlp.Height;
+        //    int[] widths = tlp.GetColumnWidths();
 
-            int i;
-            for (i = widths.Length - 1; i >= 0 && point.X < w; i--)
-                w -= widths[i];
-            int col = i + 1;
+        //    int i;
+        //    for (i = widths.Length - 1; i >= 0 && point.X < w; i--)
+        //        w -= widths[i];
+        //    int col = i + 1;
 
-            int[] heights = tlp.GetRowHeights();
-            for (i = heights.Length - 1; i >= 0 && point.Y < h; i--)
-                h -= heights[i];
+        //    int[] heights = tlp.GetRowHeights();
+        //    for (i = heights.Length - 1; i >= 0 && point.Y < h; i--)
+        //        h -= heights[i];
 
-            int row = i + 1;
-            this.celCol = int.Parse(col + "");
-            this.celRow = int.Parse(row + "");
-            cell = new int[2] { celCol, celRow };
-            return new Point(col, row);
-        }
+        //    int row = i + 1;
+        //    this.celCol = int.Parse(col + "");
+        //    this.celRow = int.Parse(row + "");
+        //    cell = new int[2] { celCol, celRow };
+        //    return new Point(col, row);
+        //}
 
-        //셀 생성시 그리기
-        private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
-        {
-            if (cellcolors.Keys.Contains(new Point(e.Column, e.Row)))
-                using (SolidBrush brush = new SolidBrush(cellcolors[new Point(e.Column, e.Row)]))
-                    e.Graphics.FillRectangle(brush, e.CellBounds);
-            else
-                using (SolidBrush brush = new SolidBrush(SystemColors.ControlDark))
-                    e.Graphics.FillRectangle(brush, e.CellBounds);
-        }
+        ////테이블 레이아웃패널 클릭 시 좌표 검색
+        //private void tableLayoutPanel1_Click(object sender, EventArgs e)
+        //{
+        //    var cellPos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
+        //    //MessageBox.Show(cellPos.Value+"");
+        //    MessageBox.Show("tablelayoutPanel : " + cellPos);
+
+        //    //해당 셀 컬러 삭제 후 추가
+        //    cellcolors.Remove(new Point(celRow, celCol));
+        //    cellcolors.Add(new Point(celRow, celCol), backcolor);
+        //    //cell_RePaint(celCol, celRow);
+        //}
+
+        ////셀 생성시 그리기
+        //private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        //{
+        //    if (cellcolors.Keys.Contains(new Point(e.Column, e.Row)))
+        //        using (SolidBrush brush = new SolidBrush(cellcolors[new Point(e.Column, e.Row)]))
+        //            e.Graphics.FillRectangle(brush, e.CellBounds);
+        //    else
+        //        using (SolidBrush brush = new SolidBrush(SystemColors.ControlDark))
+        //            e.Graphics.FillRectangle(brush, e.CellBounds);
+        //}
+
+        ////테이블 기본 배경색 변경
+        //private void Main_Load(object sender, EventArgs e)
+        //{
+        //    for(int i = 0; i < 10; i++)
+        //    {
+        //        for (int j = 0; j < 5; j++)
+        //        {
+        //            cellcolors.Add(new Point(j, i), SystemColors.Control);
+        //        }
+        //    }
+        //}
 
 
 
-
-        //테이블 기본 배경색 변경
-        private void Main_Load(object sender, EventArgs e)
-        {
-            for(int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    cellcolors.Add(new Point(j, i), SystemColors.Control);
-                }
-            }
-        }
     }
 }
 /*표
