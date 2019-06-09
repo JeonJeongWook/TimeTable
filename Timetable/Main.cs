@@ -14,8 +14,8 @@ namespace Timetable
     {
         //ListViewItem lvi = new ListViewItem();
         ListViewItem lvi = new ListViewItem(new string[] {});
-        Color backcolor = Color.Black;
-        Color fontcolor = Color.White;
+        Color backcolor = Color.LightCyan;
+        Color fontcolor = Color.Black;
         String classN, professor, place;
         //int celCol = 0;
         //int celRow = 0;
@@ -32,33 +32,33 @@ namespace Timetable
             InitializeComponent();
         }
 
-        private void mon1_Click(object sender, EventArgs e)
-        {
-
-            p_mon1.BackColor = backcolor;
-        }
-
         //배경색 변경
         private void p_backColor_Click(object sender, EventArgs e)
         {
-            ColorDialog backcolor = new ColorDialog();
-            if (backcolor.ShowDialog() == DialogResult.OK)
+            ColorDialog cd_backcolor = new ColorDialog();
+            if (cd_backcolor.ShowDialog() == DialogResult.OK)
             {
-                p_backColor.BackColor = backcolor.Color;
-                this.backcolor = p_backColor.BackColor;
+                p_backColor.BackColor = cd_backcolor.Color;
+                backcolor = p_backColor.BackColor;
             }
             else
             {
+
             }
         }
 
         //폰트색 변경
         private void p_fontColor_Click(object sender, EventArgs e)
         {
-            ColorDialog fontcolor = new ColorDialog();
-            if (fontcolor.ShowDialog() == DialogResult.OK)
+            ColorDialog cd_fontcolor = new ColorDialog();
+            if (cd_fontcolor.ShowDialog() == DialogResult.OK)
             {
-                p_fontColor.BackColor = fontcolor.Color;
+                p_fontColor.BackColor = cd_fontcolor.Color;
+                fontcolor = p_fontColor.BackColor;
+            }
+            else
+            {
+
             }
         }
 
@@ -110,20 +110,20 @@ namespace Timetable
 
         }
 
-
-
+        private void Click(object sender, EventArgs e)
+        {
+            insertContents(p_mon2, label2);
+        }
 
         private void p_mon1_Click(object sender, EventArgs e)
         {
-            //lb_mon1.Text = tb_classN.Text;
-            //p_mon1.BackColor = backcolor;
-            insertContents();
+            //insertContents();
         }
 
-        void insertContents(/*Label label*/) {
-            lb_mon1.Text = classN;
-            lb_mon1.ForeColor = fontcolor;
-            p_mon1.BackColor = backcolor;
+        void insertContents(Panel panel, Label label) {
+            label.Text = classN;
+            label.ForeColor = fontcolor;
+            panel.BackColor = backcolor;
 
         }
 
