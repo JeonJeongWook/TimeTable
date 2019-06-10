@@ -12,7 +12,6 @@ namespace Timetable
 {
     public partial class Main : Form
     {
-        //ListViewItem lvi = new ListViewItem();
         ListViewItem lvi = new ListViewItem(new string[] {});
         Color backcolor = Color.LightCyan;
         Color fontcolor = Color.Black;
@@ -20,10 +19,10 @@ namespace Timetable
         int celCol = 0;
         int celRow = 0;
         int[] cell;
-        //Dictionary<Point, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
+        Point cellpos;
 
-
-
+        //Dictionary<int, Panel> cells = new Dictionary<int, Panel>();
+        //Dictionary<Poi0nt, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
 
 
 
@@ -115,21 +114,34 @@ namespace Timetable
             //insertContents(p_mon2, label2);
             var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
             MessageBox.Show(cell[0] + " / " + cell[1]);
+            //cell[0] = 행 , cell[1] = 열
             insertContents(cell[0], cell[1]);
-
+            
         }
 
+        private void Main_Load(object sender, EventArgs e)
+        {
+            
+        }
 
+        void insertContents(int row, int col) {
+            Dictionary<int, Panel> cells = new Dictionary<int, Panel>();
+            cells.Add(0, p0);
+            cells.Add(1, p1);
+            cells.Add(2, p2);
+            cells[0].BackColor = backcolor;
 
-        void insertContents(int row, int cel) {
-            string aa = "lb_" + row + cel;
-            var a = nameof(aa);
-            MessageBox.Show(aa);
-            MessageBox.Show(a);
+            Panel[] panel = new Panel[20];
+
+            for(int i=0; i<20; i++)
+            {
+                panel[i] = new Panel();
+
+            }
+            //this.p0 = new System.Windows.Forms.Panel();
             //label.Text = classN;
             //label.ForeColor = fontcolor;
             //panel.BackColor = backcolor;
-
         }
 
 
@@ -154,8 +166,8 @@ namespace Timetable
                 h -= heights[i];
 
             int row = i + 1;
-            this.celCol = int.Parse(col + "");
-            this.celRow = int.Parse(row + "");
+            celCol = int.Parse(col + "");
+            celRow = int.Parse(row + "");
             cell = new int[2] { celRow, celCol };
             return new Point(col, row);
         }

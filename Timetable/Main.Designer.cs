@@ -61,36 +61,36 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.p_00 = new System.Windows.Forms.Panel();
+            this.p0 = new System.Windows.Forms.Panel();
             this.lb_00 = new System.Windows.Forms.Label();
-            this.p_mon2 = new System.Windows.Forms.Panel();
-            this.mon2 = new System.Windows.Forms.Label();
-            this.p_mon3 = new System.Windows.Forms.Panel();
-            this.label27 = new System.Windows.Forms.Label();
-            this.p_mon4 = new System.Windows.Forms.Panel();
-            this.label28 = new System.Windows.Forms.Label();
-            this.p_mon5 = new System.Windows.Forms.Panel();
+            this.p1 = new System.Windows.Forms.Panel();
+            this.lb10 = new System.Windows.Forms.Label();
+            this.p2 = new System.Windows.Forms.Panel();
+            this.lb_20 = new System.Windows.Forms.Label();
+            this.p3 = new System.Windows.Forms.Panel();
+            this.lb_30 = new System.Windows.Forms.Label();
+            this.p4 = new System.Windows.Forms.Panel();
             this.label29 = new System.Windows.Forms.Label();
-            this.p_mon6 = new System.Windows.Forms.Panel();
+            this.p5 = new System.Windows.Forms.Panel();
             this.label30 = new System.Windows.Forms.Label();
-            this.p_mon7 = new System.Windows.Forms.Panel();
+            this.p6 = new System.Windows.Forms.Panel();
             this.label31 = new System.Windows.Forms.Label();
-            this.p_mon8 = new System.Windows.Forms.Panel();
+            this.p7 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
-            this.p_mon9 = new System.Windows.Forms.Panel();
+            this.p8 = new System.Windows.Forms.Panel();
             this.label33 = new System.Windows.Forms.Label();
-            this.p_mon10 = new System.Windows.Forms.Panel();
+            this.p9 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.panel16 = new System.Windows.Forms.Panel();
-            this.panel17 = new System.Windows.Forms.Panel();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.panel19 = new System.Windows.Forms.Panel();
-            this.panel20 = new System.Windows.Forms.Panel();
+            this.p10 = new System.Windows.Forms.Panel();
+            this.p11 = new System.Windows.Forms.Panel();
+            this.p12 = new System.Windows.Forms.Panel();
+            this.p13 = new System.Windows.Forms.Panel();
+            this.p14 = new System.Windows.Forms.Panel();
+            this.p15 = new System.Windows.Forms.Panel();
+            this.p16 = new System.Windows.Forms.Panel();
+            this.p17 = new System.Windows.Forms.Panel();
+            this.p18 = new System.Windows.Forms.Panel();
+            this.p19 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel23 = new System.Windows.Forms.Panel();
@@ -133,16 +133,16 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.p_00.SuspendLayout();
-            this.p_mon2.SuspendLayout();
-            this.p_mon3.SuspendLayout();
-            this.p_mon4.SuspendLayout();
-            this.p_mon5.SuspendLayout();
-            this.p_mon6.SuspendLayout();
-            this.p_mon7.SuspendLayout();
-            this.p_mon8.SuspendLayout();
-            this.p_mon9.SuspendLayout();
-            this.p_mon10.SuspendLayout();
+            this.p0.SuspendLayout();
+            this.p1.SuspendLayout();
+            this.p2.SuspendLayout();
+            this.p3.SuspendLayout();
+            this.p4.SuspendLayout();
+            this.p5.SuspendLayout();
+            this.p6.SuspendLayout();
+            this.p7.SuspendLayout();
+            this.p8.SuspendLayout();
+            this.p9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -499,26 +499,26 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Controls.Add(this.p_00, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.p_mon2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.p_mon3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.p_mon4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.p_mon5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.p_mon6, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.p_mon7, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.p_mon8, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.p_mon9, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.p_mon10, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.panel11, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel12, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel13, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel14, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.panel15, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.panel16, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.panel17, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.panel18, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.panel19, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.panel20, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(this.p0, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.p1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.p2, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.p3, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.p4, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.p5, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.p6, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.p7, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.p8, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.p9, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.p10, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.p11, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.p12, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.p13, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.p14, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.p15, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.p16, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.p17, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.p18, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.p19, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.panel21, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel22, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel23, 2, 2);
@@ -565,16 +565,16 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(461, 497);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // p_00
+            // p0
             // 
-            this.p_00.Controls.Add(this.lb_00);
-            this.p_00.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.p_00.Location = new System.Drawing.Point(1, 1);
-            this.p_00.Margin = new System.Windows.Forms.Padding(0);
-            this.p_00.Name = "p_00";
-            this.p_00.Size = new System.Drawing.Size(90, 47);
-            this.p_00.TabIndex = 0;
-            this.p_00.Click += new System.EventHandler(this.Click);
+            this.p0.Controls.Add(this.lb_00);
+            this.p0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.p0.Location = new System.Drawing.Point(1, 1);
+            this.p0.Margin = new System.Windows.Forms.Padding(0);
+            this.p0.Name = "p0";
+            this.p0.Size = new System.Drawing.Size(90, 47);
+            this.p0.TabIndex = 0;
+            this.p0.Click += new System.EventHandler(this.Click);
             // 
             // lb_00
             // 
@@ -586,65 +586,65 @@
             this.lb_00.Text = "lb_00";
             this.lb_00.Click += new System.EventHandler(this.Click);
             // 
-            // p_mon2
+            // p1
             // 
-            this.p_mon2.Controls.Add(this.mon2);
-            this.p_mon2.Location = new System.Drawing.Point(4, 52);
-            this.p_mon2.Name = "p_mon2";
-            this.p_mon2.Size = new System.Drawing.Size(84, 44);
-            this.p_mon2.TabIndex = 1;
-            this.p_mon2.Click += new System.EventHandler(this.Click);
+            this.p1.Controls.Add(this.lb10);
+            this.p1.Location = new System.Drawing.Point(4, 52);
+            this.p1.Name = "p1";
+            this.p1.Size = new System.Drawing.Size(84, 44);
+            this.p1.TabIndex = 1;
+            this.p1.Click += new System.EventHandler(this.Click);
             // 
-            // mon2
+            // lb10
             // 
-            this.mon2.AutoSize = true;
-            this.mon2.Location = new System.Drawing.Point(3, 0);
-            this.mon2.Name = "mon2";
-            this.mon2.Size = new System.Drawing.Size(43, 15);
-            this.mon2.TabIndex = 0;
-            this.mon2.Text = "mon2";
+            this.lb10.AutoSize = true;
+            this.lb10.Location = new System.Drawing.Point(3, 0);
+            this.lb10.Name = "lb10";
+            this.lb10.Size = new System.Drawing.Size(42, 15);
+            this.lb10.TabIndex = 0;
+            this.lb10.Text = "lb_10";
             // 
-            // p_mon3
+            // p2
             // 
-            this.p_mon3.Controls.Add(this.label27);
-            this.p_mon3.Location = new System.Drawing.Point(4, 103);
-            this.p_mon3.Name = "p_mon3";
-            this.p_mon3.Size = new System.Drawing.Size(84, 46);
-            this.p_mon3.TabIndex = 2;
+            this.p2.Controls.Add(this.lb_20);
+            this.p2.Location = new System.Drawing.Point(4, 103);
+            this.p2.Name = "p2";
+            this.p2.Size = new System.Drawing.Size(84, 46);
+            this.p2.TabIndex = 2;
             // 
-            // label27
+            // lb_20
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(0, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(53, 15);
-            this.label27.TabIndex = 0;
-            this.label27.Text = "label27";
+            this.lb_20.AutoSize = true;
+            this.lb_20.Location = new System.Drawing.Point(0, 0);
+            this.lb_20.Name = "lb_20";
+            this.lb_20.Size = new System.Drawing.Size(42, 15);
+            this.lb_20.TabIndex = 0;
+            this.lb_20.Text = "lb_20";
             // 
-            // p_mon4
+            // p3
             // 
-            this.p_mon4.Controls.Add(this.label28);
-            this.p_mon4.Location = new System.Drawing.Point(4, 156);
-            this.p_mon4.Name = "p_mon4";
-            this.p_mon4.Size = new System.Drawing.Size(84, 41);
-            this.p_mon4.TabIndex = 3;
+            this.p3.Controls.Add(this.lb_30);
+            this.p3.Location = new System.Drawing.Point(4, 156);
+            this.p3.Name = "p3";
+            this.p3.Size = new System.Drawing.Size(84, 41);
+            this.p3.TabIndex = 3;
             // 
-            // label28
+            // lb_30
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(3, 4);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(53, 15);
-            this.label28.TabIndex = 0;
-            this.label28.Text = "label28";
+            this.lb_30.AutoSize = true;
+            this.lb_30.Location = new System.Drawing.Point(3, 4);
+            this.lb_30.Name = "lb_30";
+            this.lb_30.Size = new System.Drawing.Size(42, 15);
+            this.lb_30.TabIndex = 0;
+            this.lb_30.Text = "lb_30";
             // 
-            // p_mon5
+            // p4
             // 
-            this.p_mon5.Controls.Add(this.label29);
-            this.p_mon5.Location = new System.Drawing.Point(4, 204);
-            this.p_mon5.Name = "p_mon5";
-            this.p_mon5.Size = new System.Drawing.Size(84, 41);
-            this.p_mon5.TabIndex = 4;
+            this.p4.Controls.Add(this.label29);
+            this.p4.Location = new System.Drawing.Point(4, 204);
+            this.p4.Name = "p4";
+            this.p4.Size = new System.Drawing.Size(84, 41);
+            this.p4.TabIndex = 4;
             // 
             // label29
             // 
@@ -655,13 +655,13 @@
             this.label29.TabIndex = 0;
             this.label29.Text = "label29";
             // 
-            // p_mon6
+            // p5
             // 
-            this.p_mon6.Controls.Add(this.label30);
-            this.p_mon6.Location = new System.Drawing.Point(4, 252);
-            this.p_mon6.Name = "p_mon6";
-            this.p_mon6.Size = new System.Drawing.Size(84, 41);
-            this.p_mon6.TabIndex = 5;
+            this.p5.Controls.Add(this.label30);
+            this.p5.Location = new System.Drawing.Point(4, 252);
+            this.p5.Name = "p5";
+            this.p5.Size = new System.Drawing.Size(84, 41);
+            this.p5.TabIndex = 5;
             // 
             // label30
             // 
@@ -672,13 +672,13 @@
             this.label30.TabIndex = 0;
             this.label30.Text = "label30";
             // 
-            // p_mon7
+            // p6
             // 
-            this.p_mon7.Controls.Add(this.label31);
-            this.p_mon7.Location = new System.Drawing.Point(4, 300);
-            this.p_mon7.Name = "p_mon7";
-            this.p_mon7.Size = new System.Drawing.Size(84, 41);
-            this.p_mon7.TabIndex = 6;
+            this.p6.Controls.Add(this.label31);
+            this.p6.Location = new System.Drawing.Point(4, 300);
+            this.p6.Name = "p6";
+            this.p6.Size = new System.Drawing.Size(84, 41);
+            this.p6.TabIndex = 6;
             // 
             // label31
             // 
@@ -689,13 +689,13 @@
             this.label31.TabIndex = 0;
             this.label31.Text = "label31";
             // 
-            // p_mon8
+            // p7
             // 
-            this.p_mon8.Controls.Add(this.label32);
-            this.p_mon8.Location = new System.Drawing.Point(4, 348);
-            this.p_mon8.Name = "p_mon8";
-            this.p_mon8.Size = new System.Drawing.Size(84, 41);
-            this.p_mon8.TabIndex = 7;
+            this.p7.Controls.Add(this.label32);
+            this.p7.Location = new System.Drawing.Point(4, 348);
+            this.p7.Name = "p7";
+            this.p7.Size = new System.Drawing.Size(84, 41);
+            this.p7.TabIndex = 7;
             // 
             // label32
             // 
@@ -706,13 +706,13 @@
             this.label32.TabIndex = 0;
             this.label32.Text = "label32";
             // 
-            // p_mon9
+            // p8
             // 
-            this.p_mon9.Controls.Add(this.label33);
-            this.p_mon9.Location = new System.Drawing.Point(4, 396);
-            this.p_mon9.Name = "p_mon9";
-            this.p_mon9.Size = new System.Drawing.Size(84, 41);
-            this.p_mon9.TabIndex = 8;
+            this.p8.Controls.Add(this.label33);
+            this.p8.Location = new System.Drawing.Point(4, 396);
+            this.p8.Name = "p8";
+            this.p8.Size = new System.Drawing.Size(84, 41);
+            this.p8.TabIndex = 8;
             // 
             // label33
             // 
@@ -723,13 +723,13 @@
             this.label33.TabIndex = 0;
             this.label33.Text = "label33";
             // 
-            // p_mon10
+            // p9
             // 
-            this.p_mon10.Controls.Add(this.label4);
-            this.p_mon10.Location = new System.Drawing.Point(4, 444);
-            this.p_mon10.Name = "p_mon10";
-            this.p_mon10.Size = new System.Drawing.Size(84, 49);
-            this.p_mon10.TabIndex = 9;
+            this.p9.Controls.Add(this.label4);
+            this.p9.Location = new System.Drawing.Point(4, 444);
+            this.p9.Name = "p9";
+            this.p9.Size = new System.Drawing.Size(84, 49);
+            this.p9.TabIndex = 9;
             // 
             // label4
             // 
@@ -740,75 +740,75 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "label4";
             // 
-            // panel11
+            // p10
             // 
-            this.panel11.Location = new System.Drawing.Point(95, 4);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(84, 41);
-            this.panel11.TabIndex = 10;
+            this.p10.Location = new System.Drawing.Point(95, 4);
+            this.p10.Name = "p10";
+            this.p10.Size = new System.Drawing.Size(84, 41);
+            this.p10.TabIndex = 10;
             // 
-            // panel12
+            // p11
             // 
-            this.panel12.Location = new System.Drawing.Point(95, 52);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(84, 44);
-            this.panel12.TabIndex = 11;
+            this.p11.Location = new System.Drawing.Point(95, 52);
+            this.p11.Name = "p11";
+            this.p11.Size = new System.Drawing.Size(84, 44);
+            this.p11.TabIndex = 11;
             // 
-            // panel13
+            // p12
             // 
-            this.panel13.Location = new System.Drawing.Point(95, 103);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(84, 46);
-            this.panel13.TabIndex = 12;
+            this.p12.Location = new System.Drawing.Point(95, 103);
+            this.p12.Name = "p12";
+            this.p12.Size = new System.Drawing.Size(84, 46);
+            this.p12.TabIndex = 12;
             // 
-            // panel14
+            // p13
             // 
-            this.panel14.Location = new System.Drawing.Point(95, 156);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(84, 41);
-            this.panel14.TabIndex = 13;
+            this.p13.Location = new System.Drawing.Point(95, 156);
+            this.p13.Name = "p13";
+            this.p13.Size = new System.Drawing.Size(84, 41);
+            this.p13.TabIndex = 13;
             // 
-            // panel15
+            // p14
             // 
-            this.panel15.Location = new System.Drawing.Point(95, 204);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(84, 41);
-            this.panel15.TabIndex = 14;
+            this.p14.Location = new System.Drawing.Point(95, 204);
+            this.p14.Name = "p14";
+            this.p14.Size = new System.Drawing.Size(84, 41);
+            this.p14.TabIndex = 14;
             // 
-            // panel16
+            // p15
             // 
-            this.panel16.Location = new System.Drawing.Point(95, 252);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(84, 41);
-            this.panel16.TabIndex = 15;
+            this.p15.Location = new System.Drawing.Point(95, 252);
+            this.p15.Name = "p15";
+            this.p15.Size = new System.Drawing.Size(84, 41);
+            this.p15.TabIndex = 15;
             // 
-            // panel17
+            // p16
             // 
-            this.panel17.Location = new System.Drawing.Point(95, 300);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(84, 41);
-            this.panel17.TabIndex = 16;
+            this.p16.Location = new System.Drawing.Point(95, 300);
+            this.p16.Name = "p16";
+            this.p16.Size = new System.Drawing.Size(84, 41);
+            this.p16.TabIndex = 16;
             // 
-            // panel18
+            // p17
             // 
-            this.panel18.Location = new System.Drawing.Point(95, 348);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(84, 41);
-            this.panel18.TabIndex = 17;
+            this.p17.Location = new System.Drawing.Point(95, 348);
+            this.p17.Name = "p17";
+            this.p17.Size = new System.Drawing.Size(84, 41);
+            this.p17.TabIndex = 17;
             // 
-            // panel19
+            // p18
             // 
-            this.panel19.Location = new System.Drawing.Point(95, 396);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(84, 41);
-            this.panel19.TabIndex = 18;
+            this.p18.Location = new System.Drawing.Point(95, 396);
+            this.p18.Name = "p18";
+            this.p18.Size = new System.Drawing.Size(84, 41);
+            this.p18.TabIndex = 18;
             // 
-            // panel20
+            // p19
             // 
-            this.panel20.Location = new System.Drawing.Point(95, 444);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(84, 49);
-            this.panel20.TabIndex = 19;
+            this.p19.Location = new System.Drawing.Point(95, 444);
+            this.p19.Name = "p19";
+            this.p19.Size = new System.Drawing.Size(84, 49);
+            this.p19.TabIndex = 19;
             // 
             // panel21
             // 
@@ -1108,6 +1108,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Main";
             this.Text = "Timetable";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -1115,26 +1116,26 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.p_00.ResumeLayout(false);
-            this.p_00.PerformLayout();
-            this.p_mon2.ResumeLayout(false);
-            this.p_mon2.PerformLayout();
-            this.p_mon3.ResumeLayout(false);
-            this.p_mon3.PerformLayout();
-            this.p_mon4.ResumeLayout(false);
-            this.p_mon4.PerformLayout();
-            this.p_mon5.ResumeLayout(false);
-            this.p_mon5.PerformLayout();
-            this.p_mon6.ResumeLayout(false);
-            this.p_mon6.PerformLayout();
-            this.p_mon7.ResumeLayout(false);
-            this.p_mon7.PerformLayout();
-            this.p_mon8.ResumeLayout(false);
-            this.p_mon8.PerformLayout();
-            this.p_mon9.ResumeLayout(false);
-            this.p_mon9.PerformLayout();
-            this.p_mon10.ResumeLayout(false);
-            this.p_mon10.PerformLayout();
+            this.p0.ResumeLayout(false);
+            this.p0.PerformLayout();
+            this.p1.ResumeLayout(false);
+            this.p1.PerformLayout();
+            this.p2.ResumeLayout(false);
+            this.p2.PerformLayout();
+            this.p3.ResumeLayout(false);
+            this.p3.PerformLayout();
+            this.p4.ResumeLayout(false);
+            this.p4.PerformLayout();
+            this.p5.ResumeLayout(false);
+            this.p5.PerformLayout();
+            this.p6.ResumeLayout(false);
+            this.p6.PerformLayout();
+            this.p7.ResumeLayout(false);
+            this.p7.PerformLayout();
+            this.p8.ResumeLayout(false);
+            this.p8.PerformLayout();
+            this.p9.ResumeLayout(false);
+            this.p9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1153,7 +1154,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel p_00;
+        private System.Windows.Forms.Panel p0;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel p_backColor;
         private System.Windows.Forms.Label label5;
@@ -1184,24 +1185,24 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label lb_00;
-        private System.Windows.Forms.Panel p_mon3;
-        private System.Windows.Forms.Panel p_mon4;
-        private System.Windows.Forms.Panel p_mon5;
-        private System.Windows.Forms.Panel p_mon6;
-        private System.Windows.Forms.Panel p_mon7;
-        private System.Windows.Forms.Panel p_mon8;
-        private System.Windows.Forms.Panel p_mon9;
-        private System.Windows.Forms.Panel p_mon10;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Panel panel18;
-        private System.Windows.Forms.Panel panel19;
-        private System.Windows.Forms.Panel panel20;
+        private System.Windows.Forms.Panel p2;
+        private System.Windows.Forms.Panel p3;
+        private System.Windows.Forms.Panel p4;
+        private System.Windows.Forms.Panel p5;
+        private System.Windows.Forms.Panel p6;
+        private System.Windows.Forms.Panel p7;
+        private System.Windows.Forms.Panel p8;
+        private System.Windows.Forms.Panel p9;
+        private System.Windows.Forms.Panel p10;
+        private System.Windows.Forms.Panel p11;
+        private System.Windows.Forms.Panel p12;
+        private System.Windows.Forms.Panel p13;
+        private System.Windows.Forms.Panel p14;
+        private System.Windows.Forms.Panel p15;
+        private System.Windows.Forms.Panel p16;
+        private System.Windows.Forms.Panel p17;
+        private System.Windows.Forms.Panel p18;
+        private System.Windows.Forms.Panel p19;
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.Panel panel22;
         private System.Windows.Forms.Panel panel23;
@@ -1232,10 +1233,10 @@
         private System.Windows.Forms.Panel panel48;
         private System.Windows.Forms.Panel panel49;
         private System.Windows.Forms.Panel panel50;
-        private System.Windows.Forms.Panel p_mon2;
-        private System.Windows.Forms.Label mon2;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Panel p1;
+        private System.Windows.Forms.Label lb10;
+        private System.Windows.Forms.Label lb_20;
+        private System.Windows.Forms.Label lb_30;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
