@@ -19,7 +19,7 @@ namespace Timetable
         int celCol = 0;
         int celRow = 0;
         int[] cell;
-        Point cellpos;
+        //Point cellpos;
 
         //Dictionary<int, Panel> cells = new Dictionary<int, Panel>();
         //Dictionary<Poi0nt, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
@@ -111,6 +111,7 @@ namespace Timetable
 
         private void Click(object sender, EventArgs e)
         {
+            MessageBox.Show("asd");
             //insertContents(p_mon2, label2);
             //var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
             //MessageBox.Show(cell[0] + " / " + cell[1]);
@@ -121,6 +122,9 @@ namespace Timetable
 
         private void Main_Load(object sender, EventArgs e)
         {
+
+            //dictionary 만들기
+            Dictionary<int[,], Panel[,]> cells = new Dictionary<int[,], Panel[,]>();
             Panel[,] panels = new Panel[5,10];
             Label[,] labels = new Label[5, 10];
             
@@ -133,6 +137,9 @@ namespace Timetable
                     labels[i, j].Text = i + "_" + j;
                     panels[i, j].Controls.Add(labels[i, j]);
                     tableLayoutPanel1.Controls.Add(panels[i, j], i, j);
+                    this.tableLayoutPanel1.Click += new System.EventHandler(this.tableLayoutPanel1_Click);
+                    panels[i, j].Click += new System.EventHandler(this.Click);
+                    //cells.Add([i,j],panels[i,j]);
 
                     //MessageBox.Show("" + panels[i, j]);
                 }
@@ -140,15 +147,16 @@ namespace Timetable
 
         }
 
+        private void tableLayoutPanel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         void insertContents(int row, int col) {
-            Dictionary<int[][], Panel[][]> cells = new Dictionary<int[][], Panel[][]>();
+            
 
             //cells.Add()
             //cells[0].BackColor = backcolor;
-            
-            
-
-   
         }
 
 
