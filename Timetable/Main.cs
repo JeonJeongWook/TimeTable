@@ -112,36 +112,43 @@ namespace Timetable
         private void Click(object sender, EventArgs e)
         {
             //insertContents(p_mon2, label2);
-            var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
-            MessageBox.Show(cell[0] + " / " + cell[1]);
+            //var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
+            //MessageBox.Show(cell[0] + " / " + cell[1]);
             //cell[0] = 행 , cell[1] = 열
-            insertContents(cell[0], cell[1]);
+            //insertContents(cell[0], cell[1]);
             
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
+            Panel[,] panels = new Panel[5,10];
+            Label[,] labels = new Label[5, 10];
             
+            for(int i = 0; i < 5; i++)
+            {
+                for(int j = 0; j < 10; j++)
+                {
+                    panels[i, j] = new Panel();
+                    labels[i, j] = new Label();
+                    labels[i, j].Text = i + "_" + j;
+                    panels[i, j].Controls.Add(labels[i, j]);
+                    tableLayoutPanel1.Controls.Add(panels[i, j], i, j);
+
+                    //MessageBox.Show("" + panels[i, j]);
+                }
+            }
+
         }
 
         void insertContents(int row, int col) {
-            Dictionary<int, Panel> cells = new Dictionary<int, Panel>();
-            cells.Add(0, p0);
-            cells.Add(1, p1);
-            cells.Add(2, p2);
-            cells[0].BackColor = backcolor;
+            Dictionary<int[][], Panel[][]> cells = new Dictionary<int[][], Panel[][]>();
 
-            Panel[] panel = new Panel[20];
+            //cells.Add()
+            //cells[0].BackColor = backcolor;
+            
+            
 
-            for(int i=0; i<20; i++)
-            {
-                panel[i] = new Panel();
-
-            }
-            //this.p0 = new System.Windows.Forms.Panel();
-            //label.Text = classN;
-            //label.ForeColor = fontcolor;
-            //panel.BackColor = backcolor;
+   
         }
 
 
