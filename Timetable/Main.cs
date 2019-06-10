@@ -12,7 +12,8 @@ namespace Timetable
 {
     public partial class Main : Form
     {
-        ListViewItem lvi = new ListViewItem(new string[] {});
+        
+        ListViewItem lvi = new ListViewItem(new string[] { });
         Color backcolor = Color.LightCyan;
         Color fontcolor = Color.Black;
         String classN, professor, place;
@@ -106,46 +107,64 @@ namespace Timetable
             place = tb_place.Text;
             lvi = new ListViewItem(new string[] { classN, professor, place });
             listView1.Items.Add(lvi);
-
         }
 
-        private void Click(object sender, EventArgs e)
+        //셀을 클릭할 시
+        private new void Click(object sender, EventArgs e)
         {
             MessageBox.Show("asd");
             //insertContents(p_mon2, label2);
-            //var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
-            //MessageBox.Show(cell[0] + " / " + cell[1]);
+            var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
+
             //cell[0] = 행 , cell[1] = 열
-            //insertContents(cell[0], cell[1]);
+            insertContents(cell[0], cell[1]);
             
+
         }
+
+        Panel[,] panels = new Panel[5, 10];
+        Label[,] labels = new Label[5, 10];
+        Dictionary<int, Panel> cells = new Dictionary<int, Panel>();
 
         private void Main_Load(object sender, EventArgs e)
         {
-
-            //dictionary 만들기
-            Dictionary<int[,], Panel[,]> cells = new Dictionary<int[,], Panel[,]>();
-            Panel[,] panels = new Panel[5,10];
-            Label[,] labels = new Label[5, 10];
-            
-            for(int i = 0; i < 5; i++)
+            int[,] a = new int[5, 10];
+            int k = 0;
+            string ab;
+            for (int i = 0; i < 5; i++)
             {
-                for(int j = 0; j < 10; j++)
+                for (int j = 0; j < 10; j++)
                 {
                     panels[i, j] = new Panel();
+                    ab = ("panels[" + i + "," + j + "]").ToString();
+                    panels[i, j].Name = ab;
+
                     labels[i, j] = new Label();
+
                     labels[i, j].Text = i + "_" + j;
                     panels[i, j].Controls.Add(labels[i, j]);
                     tableLayoutPanel1.Controls.Add(panels[i, j], i, j);
-                    this.tableLayoutPanel1.Click += new System.EventHandler(this.tableLayoutPanel1_Click);
-                    panels[i, j].Click += new System.EventHandler(this.Click);
-                    //cells.Add([i,j],panels[i,j]);
 
-                    //MessageBox.Show("" + panels[i, j]);
+                    //MessageBox.Show(labels[i, j] + "");
+                    panels[i, j].Click += new System.EventHandler(this.Click);
                 }
             }
-
+            
+            for(int i=0; i<5; i++)
+            {
+                for(int j=0; j<10; j++)
+                {
+                    cells.Add(k, panels[i,j]);
+                    k++;
+                }
+            }
+            for(int i=0; i<50; i++)
+            {
+                MessageBox.Show(cells[i].Name);
+            }
         }
+        
+            
 
         private void tableLayoutPanel1_Click(object sender, EventArgs e)
         {
@@ -153,8 +172,6 @@ namespace Timetable
         }
 
         void insertContents(int row, int col) {
-            
-
             //cells.Add()
             //cells[0].BackColor = backcolor;
         }
