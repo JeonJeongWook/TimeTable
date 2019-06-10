@@ -17,9 +17,9 @@ namespace Timetable
         Color backcolor = Color.LightCyan;
         Color fontcolor = Color.Black;
         String classN, professor, place;
-        //int celCol = 0;
-        //int celRow = 0;
-        //int[] cell;
+        int celCol = 0;
+        int celRow = 0;
+        int[] cell;
         //Dictionary<Point, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
 
 
@@ -112,47 +112,57 @@ namespace Timetable
 
         private void Click(object sender, EventArgs e)
         {
-            insertContents(p_mon2, label2);
+            //insertContents(p_mon2, label2);
+            var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
+            MessageBox.Show(cell[0] + " / " + cell[1]);
+            insertContents(cell[0], cell[1]);
+
         }
 
-        private void p_mon1_Click(object sender, EventArgs e)
+
+
+        void insertContents(int row, int cel) {
+            string aa = "lb_" + row + cel;
+            var a = nameof(aa);
+            MessageBox.Show(aa);
+            MessageBox.Show(a);
+            //label.Text = classN;
+            //label.ForeColor = fontcolor;
+            //panel.BackColor = backcolor;
+
+        }
+
+
+
+        //해당하는 테이블 레이아웃 클릭시
+        Point? GetRowColIndex(TableLayoutPanel tlp, Point point)
         {
-            //insertContents();
+            if (point.X > tlp.Width || point.Y > tlp.Height)
+                return null;
+
+            int w = tlp.Width;
+            int h = tlp.Height;
+            int[] widths = tlp.GetColumnWidths();
+
+            int i;
+            for (i = widths.Length - 1; i >= 0 && point.X < w; i--)
+                w -= widths[i];
+            int col = i + 1;
+
+            int[] heights = tlp.GetRowHeights();
+            for (i = heights.Length - 1; i >= 0 && point.Y < h; i--)
+                h -= heights[i];
+
+            int row = i + 1;
+            this.celCol = int.Parse(col + "");
+            this.celRow = int.Parse(row + "");
+            cell = new int[2] { celRow, celCol };
+            return new Point(col, row);
         }
 
-        void insertContents(Panel panel, Label label) {
-            label.Text = classN;
-            label.ForeColor = fontcolor;
-            panel.BackColor = backcolor;
-
-        }
-
-
-
-        ////해당하는 테이블 레이아웃 클릭시
-        //Point? GetRowColIndex(TableLayoutPanel tlp, Point point)
+        //private void p_mon1_Click(object sender, EventArgs e)
         //{
-        //    if (point.X > tlp.Width || point.Y > tlp.Height)
-        //        return null;
-            
-        //    int w = tlp.Width;
-        //    int h = tlp.Height;
-        //    int[] widths = tlp.GetColumnWidths();
-
-        //    int i;
-        //    for (i = widths.Length - 1; i >= 0 && point.X < w; i--)
-        //        w -= widths[i];
-        //    int col = i + 1;
-
-        //    int[] heights = tlp.GetRowHeights();
-        //    for (i = heights.Length - 1; i >= 0 && point.Y < h; i--)
-        //        h -= heights[i];
-
-        //    int row = i + 1;
-        //    this.celCol = int.Parse(col + "");
-        //    this.celRow = int.Parse(row + "");
-        //    cell = new int[2] { celCol, celRow };
-        //    return new Point(col, row);
+        //    //insertContents();
         //}
 
         ////테이블 레이아웃패널 클릭 시 좌표 검색
