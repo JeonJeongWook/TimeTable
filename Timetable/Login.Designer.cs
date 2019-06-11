@@ -32,7 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_id = new System.Windows.Forms.TextBox();
-            this.tb_passwd = new System.Windows.Forms.TextBox();
+            this.tb_password = new System.Windows.Forms.TextBox();
             this.bt_goRegister = new System.Windows.Forms.Button();
             this.bt_login = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -72,12 +72,12 @@
             this.tb_id.Size = new System.Drawing.Size(168, 25);
             this.tb_id.TabIndex = 2;
             // 
-            // tb_passwd
+            // tb_password
             // 
-            this.tb_passwd.Location = new System.Drawing.Point(225, 184);
-            this.tb_passwd.Name = "tb_passwd";
-            this.tb_passwd.Size = new System.Drawing.Size(168, 25);
-            this.tb_passwd.TabIndex = 4;
+            this.tb_password.Location = new System.Drawing.Point(225, 184);
+            this.tb_password.Name = "tb_password";
+            this.tb_password.Size = new System.Drawing.Size(168, 25);
+            this.tb_password.TabIndex = 4;
             // 
             // bt_goRegister
             // 
@@ -106,7 +106,7 @@
             this.ClientSize = new System.Drawing.Size(532, 303);
             this.Controls.Add(this.bt_login);
             this.Controls.Add(this.bt_goRegister);
-            this.Controls.Add(this.tb_passwd);
+            this.Controls.Add(this.tb_password);
             this.Controls.Add(this.tb_id);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -124,7 +124,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_id;
-        private System.Windows.Forms.TextBox tb_passwd;
+        private System.Windows.Forms.TextBox tb_password;
         private System.Windows.Forms.Button bt_goRegister;
         private System.Windows.Forms.Button bt_login;
     }
