@@ -54,7 +54,6 @@ namespace Timetable
                     labels[i, j] = new Label();
                     labels[i, j].Text = i + "_" + j;
                     labels[i, j].Margin = new Padding(3, 3, 0, 0);
-                    //마진 넣기 1!
 
                     panels[i, j].Controls.Add(labels[i, j]);
                     tableLayoutPanel1.Controls.Add(panels[i, j], i, j);
@@ -180,7 +179,6 @@ namespace Timetable
 
             dic_labels[cell[2]].Text = classN;
         }
-
 
         private void tableLayoutPanel1_Click(object sender, EventArgs e)
         {

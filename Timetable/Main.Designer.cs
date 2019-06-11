@@ -490,10 +490,11 @@
             // 
             this.lb_name.AutoSize = true;
             this.lb_name.Font = new System.Drawing.Font("굴림", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lb_name.Location = new System.Drawing.Point(687, 20);
+            this.lb_name.Location = new System.Drawing.Point(677, 19);
             this.lb_name.Name = "lb_name";
             this.lb_name.Size = new System.Drawing.Size(0, 17);
             this.lb_name.TabIndex = 8;
+            this.lb_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label25
             // 

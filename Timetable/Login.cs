@@ -48,18 +48,17 @@ namespace Timetable
                     string user_id = (string)rdr["id"];
                     string user_password = (string)rdr["password"];
                     name = (string)rdr["name"];
-                    MessageBox.Show(name);
 
                     if (password.Equals(user_password))
                     {
-                        MessageBox.Show("로그인 성공!");
+                        MessageBox.Show(name + "님이 접속 하셨습니다.","로그인 성공");
                         Form main = new Main();
                         main.Show();
                         Visible = false;
                     }
                     else
                     {
-                        MessageBox.Show("아이디와 패스워드를 다시 확인해주세요!");
+                        MessageBox.Show("아이디와 패스워드를 다시 확인해주세요!","로그인 실패");
                     }
                 }
                 connection.Close();
