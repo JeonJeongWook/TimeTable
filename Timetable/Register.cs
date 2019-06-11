@@ -27,7 +27,6 @@ namespace Timetable
 
         private void bt_register_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("아직 개발중 입니다.");
             //칼럼에 추가하는 커리문 insertQuery
             string insertQuery = "INSERT INTO user(id,password, name) VALUES('" + tb_id.Text + "','" + tb_password.Text + "','" + tb_name.Text + "')";
 
@@ -39,7 +38,7 @@ namespace Timetable
                 //만약 내가 처리한 Mysql에 정상적으로 들어가면 메시지 출력
                 if (command.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("정상적으로 들어갔습니다");
+                    MessageBox.Show("회원가입이 완료되었습니다.");
                     this.Close();
                 }
                 else
@@ -57,6 +56,11 @@ namespace Timetable
         private void bt_back_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Register_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = tb_id;
         }
     }
 }

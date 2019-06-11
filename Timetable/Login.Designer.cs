@@ -46,6 +46,7 @@
             this.label1.Size = new System.Drawing.Size(167, 48);
             this.label1.TabIndex = 0;
             this.label1.Text = "로그인";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 

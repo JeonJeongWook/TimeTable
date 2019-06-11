@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MySql.Data.MySqlClient;
+
 namespace Timetable
 {
     public partial class Main : Form
@@ -26,12 +28,12 @@ namespace Timetable
         int[] cell;
         //Dictionary<Poi0nt, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
 
-
-
         public Main()
         {
             InitializeComponent();
+            lb_name.Text = Login.name;
         }
+
         //생성
         private void Main_Load(object sender, EventArgs e)
         {
