@@ -12,13 +12,16 @@ namespace Timetable
 {
     public partial class Main : Form
     {
-        
+        Panel[,] panels = new Panel[5, 10];
+        Label[,] labels = new Label[5, 10];
+        Dictionary<int, Panel> cells = new Dictionary<int, Panel>();
         ListViewItem lvi = new ListViewItem(new string[] { });
         Color backcolor = Color.LightCyan;
         Color fontcolor = Color.Black;
         String classN, professor, place;
         int celCol = 0;
         int celRow = 0;
+        int plus = 0;
         int[] cell;
         //Point cellpos;
 
@@ -110,26 +113,33 @@ namespace Timetable
         }
 
         //셀을 클릭할 시
-        private new void Click(object sender, EventArgs e)
+        void Click(object sender, EventArgs e)
         {
-            MessageBox.Show("asd");
             //insertContents(p_mon2, label2);
             var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
-
-            //cell[0] = 행 , cell[1] = 열
-            insertContents(cell[0], cell[1]);
             
+            //cell[0] = 행 , cell[1] = 열
+
+            MessageBox.Show(cellpos + "/" + cell[0] + "/" + cell[1]);
+            insertContents(cell[0], cell[1]);
 
         }
 
-        Panel[,] panels = new Panel[5, 10];
-        Label[,] labels = new Label[5, 10];
-        Dictionary<int, Panel> cells = new Dictionary<int, Panel>();
+        void insertContents(int row, int col)
+        {
+            cell[2] = row * 10 + col;
+            cells[cell[2]].BackColor = backcolor;
+            MessageBox.Show(cell[2]+"");
+            
+        }
 
+
+        
+
+        //생성
         private void Main_Load(object sender, EventArgs e)
         {
             int[,] a = new int[5, 10];
-            int k = 0;
             string ab;
             for (int i = 0; i < 5; i++)
             {
@@ -138,47 +148,51 @@ namespace Timetable
                     panels[i, j] = new Panel();
                     ab = ("panels[" + i + "," + j + "]").ToString();
                     panels[i, j].Name = ab;
+                    panels[i, j].BackColor = BackColor;
+                    panels[i, j].Dock = DockStyle.Fill;
 
                     labels[i, j] = new Label();
-
                     labels[i, j].Text = i + "_" + j;
+
                     panels[i, j].Controls.Add(labels[i, j]);
                     tableLayoutPanel1.Controls.Add(panels[i, j], i, j);
-
-                    //MessageBox.Show(labels[i, j] + "");
-                    panels[i, j].Click += new System.EventHandler(this.Click);
+                    
+                    //클릭 이벤트 주기 
+                    panels[i, j].Click += new System.EventHandler(Click);
+                    labels[i, j].Click += new System.EventHandler(Click);
                 }
             }
-            
+
+            int k = 0;
             for(int i=0; i<5; i++)
             {
                 for(int j=0; j<10; j++)
                 {
                     cells.Add(k, panels[i,j]);
+                    //MessageBox.Show("k : " + k + " // " + "panels[" + i + ", " + j + "]");
                     k++;
                 }
             }
-            for(int i=0; i<50; i++)
-            {
-                MessageBox.Show(cells[i].Name);
-            }
+            /*
+             * k = 0 // panels 0,0
+             * k = 1 // panels 0,1
+             * k = 10// panels 1,0
+             */
+
         }
         
             
 
         private void tableLayoutPanel1_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("tablelayoutpanel을 클릭하셨습니다.");
         }
 
-        void insertContents(int row, int col) {
-            //cells.Add()
-            //cells[0].BackColor = backcolor;
-        }
 
 
 
         //해당하는 테이블 레이아웃 클릭시
+        //행*10 + 열
         Point? GetRowColIndex(TableLayoutPanel tlp, Point point)
         {
             if (point.X > tlp.Width || point.Y > tlp.Height)
@@ -200,7 +214,7 @@ namespace Timetable
             int row = i + 1;
             celCol = int.Parse(col + "");
             celRow = int.Parse(row + "");
-            cell = new int[2] { celRow, celCol };
+            cell = new int[3] { celCol, celRow, plus };
             return new Point(col, row);
         }
 
