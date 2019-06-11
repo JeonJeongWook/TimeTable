@@ -28,58 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.bt_register = new System.Windows.Forms.Button();
+            this.tb_password = new System.Windows.Forms.TextBox();
+            this.tb_id = new System.Windows.Forms.TextBox();
+            this.lb_password = new System.Windows.Forms.Label();
+            this.lb_id = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.tb_name = new System.Windows.Forms.TextBox();
+            this.bt_back = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // bt_register
             // 
-            this.button1.Location = new System.Drawing.Point(175, 246);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 28);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "가입완료";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.bt_register.Location = new System.Drawing.Point(175, 246);
+            this.bt_register.Name = "bt_register";
+            this.bt_register.Size = new System.Drawing.Size(83, 28);
+            this.bt_register.TabIndex = 7;
+            this.bt_register.Text = "가입완료";
+            this.bt_register.UseVisualStyleBackColor = true;
+            this.bt_register.Click += new System.EventHandler(this.bt_register_Click);
             // 
-            // textBox2
+            // tb_password
             // 
-            this.textBox2.Location = new System.Drawing.Point(228, 146);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(168, 25);
-            this.textBox2.TabIndex = 4;
+            this.tb_password.Location = new System.Drawing.Point(228, 146);
+            this.tb_password.Name = "tb_password";
+            this.tb_password.Size = new System.Drawing.Size(168, 25);
+            this.tb_password.TabIndex = 4;
+            this.tb_password.UseSystemPasswordChar = true;
             // 
-            // textBox1
+            // tb_id
             // 
-            this.textBox1.Location = new System.Drawing.Point(228, 105);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(168, 25);
-            this.textBox1.TabIndex = 2;
+            this.tb_id.Location = new System.Drawing.Point(228, 105);
+            this.tb_id.Name = "tb_id";
+            this.tb_id.Size = new System.Drawing.Size(168, 25);
+            this.tb_id.TabIndex = 2;
             // 
-            // label3
+            // lb_password
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(137, 149);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 15);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "비밀번호";
+            this.lb_password.AutoSize = true;
+            this.lb_password.Location = new System.Drawing.Point(137, 149);
+            this.lb_password.Name = "lb_password";
+            this.lb_password.Size = new System.Drawing.Size(67, 15);
+            this.lb_password.TabIndex = 3;
+            this.lb_password.Text = "비밀번호";
             // 
-            // label2
+            // lb_id
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(137, 108);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "아이디";
+            this.lb_id.AutoSize = true;
+            this.lb_id.Location = new System.Drawing.Point(137, 108);
+            this.lb_id.Name = "lb_id";
+            this.lb_id.Size = new System.Drawing.Size(52, 15);
+            this.lb_id.TabIndex = 1;
+            this.lb_id.Text = "아이디";
             // 
             // label1
             // 
@@ -96,42 +97,42 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(102, 191);
+            this.label4.Location = new System.Drawing.Point(137, 191);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(102, 15);
+            this.label4.Size = new System.Drawing.Size(37, 15);
             this.label4.TabIndex = 5;
-            this.label4.Text = "비밀번호 확인";
+            this.label4.Text = "이름";
             // 
-            // textBox3
+            // tb_name
             // 
-            this.textBox3.Location = new System.Drawing.Point(228, 188);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(168, 25);
-            this.textBox3.TabIndex = 6;
+            this.tb_name.Location = new System.Drawing.Point(228, 188);
+            this.tb_name.Name = "tb_name";
+            this.tb_name.Size = new System.Drawing.Size(168, 25);
+            this.tb_name.TabIndex = 6;
             // 
-            // button2
+            // bt_back
             // 
-            this.button2.Location = new System.Drawing.Point(281, 246);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 28);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "돌아가기";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.bt_back.Location = new System.Drawing.Point(281, 246);
+            this.bt_back.Name = "bt_back";
+            this.bt_back.Size = new System.Drawing.Size(83, 28);
+            this.bt_back.TabIndex = 8;
+            this.bt_back.Text = "돌아가기";
+            this.bt_back.UseVisualStyleBackColor = true;
+            this.bt_back.Click += new System.EventHandler(this.bt_back_Click);
             // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 303);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.bt_back);
+            this.Controls.Add(this.bt_register);
+            this.Controls.Add(this.tb_name);
+            this.Controls.Add(this.tb_password);
+            this.Controls.Add(this.tb_id);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lb_password);
+            this.Controls.Add(this.lb_id);
             this.Controls.Add(this.label1);
             this.Name = "Register";
             this.Text = "Register";
@@ -142,14 +143,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button bt_register;
+        private System.Windows.Forms.TextBox tb_password;
+        private System.Windows.Forms.TextBox tb_id;
+        private System.Windows.Forms.Label lb_password;
+        private System.Windows.Forms.Label lb_id;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox tb_name;
+        private System.Windows.Forms.Button bt_back;
     }
 }

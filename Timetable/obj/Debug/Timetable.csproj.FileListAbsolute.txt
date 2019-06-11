@@ -10,3 +10,8 @@ C:\Project\CSharpProject\Timetable\Timetable\obj\Debug\Timetable.pdb
 C:\Project\CSharpProject\TimeTable\Timetable\obj\Debug\Timetable.Main.resources
 C:\Project\CSharpProject\TimeTable\Timetable\obj\Debug\Timetable.Login.resources
 C:\Project\CSharpProject\TimeTable\Timetable\obj\Debug\Timetable.Register.resources
+C:\Project\CSharpProject\Timetable\Timetable\bin\Debug\MySql.Data.dll
+C:\Project\CSharpProject\Timetable\Timetable\bin\Debug\Google.Protobuf.dll
+C:\Project\CSharpProject\Timetable\Timetable\bin\Debug\BouncyCastle.Crypto.dll
+C:\Project\CSharpProject\Timetable\Timetable\bin\Debug\MySql.Data.xml
+C:\Project\CSharpProject\Timetable\Timetable\obj\Debug\Timetable.csproj.CopyComplete

@@ -33,8 +33,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tb_id = new System.Windows.Forms.TextBox();
             this.tb_passwd = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.bt_goRegister = new System.Windows.Forms.Button();
+            this.bt_login = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -62,7 +62,7 @@
             this.label3.Location = new System.Drawing.Point(134, 187);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 15);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 3;
             this.label3.Text = "비밀번호";
             // 
             // tb_id
@@ -70,7 +70,7 @@
             this.tb_id.Location = new System.Drawing.Point(225, 143);
             this.tb_id.Name = "tb_id";
             this.tb_id.Size = new System.Drawing.Size(168, 25);
-            this.tb_id.TabIndex = 3;
+            this.tb_id.TabIndex = 2;
             // 
             // tb_passwd
             // 
@@ -79,33 +79,33 @@
             this.tb_passwd.Size = new System.Drawing.Size(168, 25);
             this.tb_passwd.TabIndex = 4;
             // 
-            // button1
+            // bt_goRegister
             // 
-            this.button1.Location = new System.Drawing.Point(282, 253);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 28);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "회원가입";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.bt_goRegister.Location = new System.Drawing.Point(282, 253);
+            this.bt_goRegister.Name = "bt_goRegister";
+            this.bt_goRegister.Size = new System.Drawing.Size(83, 28);
+            this.bt_goRegister.TabIndex = 6;
+            this.bt_goRegister.Text = "회원가입";
+            this.bt_goRegister.UseVisualStyleBackColor = true;
+            this.bt_goRegister.Click += new System.EventHandler(this.bt_goRegister_Click);
             // 
-            // button2
+            // bt_login
             // 
-            this.button2.Location = new System.Drawing.Point(179, 253);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 28);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "로그인";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.bt_login.Location = new System.Drawing.Point(179, 253);
+            this.bt_login.Name = "bt_login";
+            this.bt_login.Size = new System.Drawing.Size(83, 28);
+            this.bt_login.TabIndex = 5;
+            this.bt_login.Text = "로그인";
+            this.bt_login.UseVisualStyleBackColor = true;
+            this.bt_login.Click += new System.EventHandler(this.bt_login_Click);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 303);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.bt_login);
+            this.Controls.Add(this.bt_goRegister);
             this.Controls.Add(this.tb_passwd);
             this.Controls.Add(this.tb_id);
             this.Controls.Add(this.label3);
@@ -125,7 +125,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_id;
         private System.Windows.Forms.TextBox tb_passwd;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button bt_goRegister;
+        private System.Windows.Forms.Button bt_login;
     }
 }
