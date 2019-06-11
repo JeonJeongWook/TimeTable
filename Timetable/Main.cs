@@ -14,7 +14,8 @@ namespace Timetable
     {
         Panel[,] panels = new Panel[5, 10];
         Label[,] labels = new Label[5, 10];
-        Dictionary<int, Panel> cells = new Dictionary<int, Panel>();
+        Dictionary<int, Panel> dic_panels = new Dictionary<int, Panel>();
+        Dictionary<int, Label> dic_labels = new Dictionary<int, Label>();
         ListViewItem lvi = new ListViewItem(new string[] { });
         Color backcolor = Color.LightCyan;
         Color fontcolor = Color.Black;
@@ -23,9 +24,6 @@ namespace Timetable
         int celRow = 0;
         int plus = 0;
         int[] cell;
-        //Point cellpos;
-
-        //Dictionary<int, Panel> cells = new Dictionary<int, Panel>();
         //Dictionary<Poi0nt, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
 
 
@@ -33,6 +31,55 @@ namespace Timetable
         public Main()
         {
             InitializeComponent();
+        }
+        //생성
+        private void Main_Load(object sender, EventArgs e)
+        {
+            int[,] a = new int[5, 10];
+            string ab;
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    //
+                    ab = ("panels[" + i + "," + j + "]").ToString();
+                    panels[i, j] = new Panel();
+                    panels[i, j].Name = ab;
+                    panels[i, j].BackColor = BackColor;
+                    panels[i, j].Dock = DockStyle.Fill;
+                    panels[i, j].Margin = new Padding(0, 0, 0, 0);
+
+                    labels[i, j] = new Label();
+                    labels[i, j].Text = i + "_" + j;
+                    labels[i, j].Margin = new Padding(3, 3, 0, 0);
+                    //마진 넣기 1!
+
+                    panels[i, j].Controls.Add(labels[i, j]);
+                    tableLayoutPanel1.Controls.Add(panels[i, j], i, j);
+                    
+                    //클릭 이벤트 주기 
+                    panels[i, j].Click += new System.EventHandler(Click);
+                    labels[i, j].Click += new System.EventHandler(Click);
+                }
+            }
+
+            int k = 0;
+            for(int i=0; i<5; i++)
+            {
+                for(int j=0; j<10; j++)
+                {
+                    dic_panels.Add(k, panels[i, j]);      //dic_panels 에 panel넣기
+                    dic_labels.Add(k, labels[i, j]);    //dic_labels 에 label넣기
+
+                    k++;
+                }
+            }
+            /*
+             * k = 0 // panels 0,0
+             * k = 1 // panels 0,1
+             * k = 10// panels 1,0
+             */
+
         }
 
         //배경색 변경
@@ -113,82 +160,30 @@ namespace Timetable
         }
 
         //셀을 클릭할 시
-        void Click(object sender, EventArgs e)
+        new void Click(object sender, EventArgs e)
         {
-            //insertContents(p_mon2, label2);
             var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
             
-            //cell[0] = 행 , cell[1] = 열
-
-            MessageBox.Show(cellpos + "/" + cell[0] + "/" + cell[1]);
+            //cell[0] = 행 , cell[1] = 열 , cell[2] = 행+열
             insertContents(cell[0], cell[1]);
-
         }
 
+        //내용, 배경 넣기
         void insertContents(int row, int col)
         {
             cell[2] = row * 10 + col;
-            cells[cell[2]].BackColor = backcolor;
-            MessageBox.Show(cell[2]+"");
-            
+
+            dic_panels[cell[2]].BackColor = backcolor;
+            dic_panels[cell[2]].ForeColor = fontcolor;
+
+            dic_labels[cell[2]].Text = classN;
         }
 
-
-        
-
-        //생성
-        private void Main_Load(object sender, EventArgs e)
-        {
-            int[,] a = new int[5, 10];
-            string ab;
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    panels[i, j] = new Panel();
-                    ab = ("panels[" + i + "," + j + "]").ToString();
-                    panels[i, j].Name = ab;
-                    panels[i, j].BackColor = BackColor;
-                    panels[i, j].Dock = DockStyle.Fill;
-
-                    labels[i, j] = new Label();
-                    labels[i, j].Text = i + "_" + j;
-
-                    panels[i, j].Controls.Add(labels[i, j]);
-                    tableLayoutPanel1.Controls.Add(panels[i, j], i, j);
-                    
-                    //클릭 이벤트 주기 
-                    panels[i, j].Click += new System.EventHandler(Click);
-                    labels[i, j].Click += new System.EventHandler(Click);
-                }
-            }
-
-            int k = 0;
-            for(int i=0; i<5; i++)
-            {
-                for(int j=0; j<10; j++)
-                {
-                    cells.Add(k, panels[i,j]);
-                    //MessageBox.Show("k : " + k + " // " + "panels[" + i + ", " + j + "]");
-                    k++;
-                }
-            }
-            /*
-             * k = 0 // panels 0,0
-             * k = 1 // panels 0,1
-             * k = 10// panels 1,0
-             */
-
-        }
-        
-            
 
         private void tableLayoutPanel1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("tablelayoutpanel을 클릭하셨습니다.");
         }
-
-
 
 
         //해당하는 테이블 레이아웃 클릭시
