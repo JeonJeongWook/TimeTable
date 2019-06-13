@@ -34,7 +34,7 @@ namespace Timetable
 
                 id = tb_id.Text;
                 password = tb_password.Text;
-
+                
                 string insertQuery = "select* from user where id = '" + id + "';";
                 MySqlCommand command = new MySqlCommand(insertQuery, connection);
                 rdr = command.ExecuteReader();

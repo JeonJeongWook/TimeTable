@@ -24,7 +24,7 @@ namespace Timetable
     public partial class Register : Form
     {
         MySqlConnection connection = new MySqlConnection("Server=localhost;Database=timetable;Uid=root;Pwd=1234;");
-
+        
         public Register()
         {
             InitializeComponent();
@@ -34,14 +34,15 @@ namespace Timetable
         {
             //칼럼에 추가하는 커리문 insertQuery
             string insertQuery = "INSERT INTO user(id,password, name) VALUES('" + tb_id.Text + "','" + tb_password.Text + "','" + tb_name.Text + "')";
-            string checkQuery = "SELECT * FROM user GROUP BY id HAVING COUNT(id) > 1
+            //string checkQuery = "SELECT * FROM user GROUP BY id HAVING COUNT(id) > 1
 
             connection.Open();
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
 
             try//예외처리
             {
-                if () {
+                if (!tb_id.Text.Equals("") || !tb_password.Equals("") || !tb_name.Equals(""))
+                {
                     //만약 내가 처리한 Mysql에 정상적으로 들어가면 메시지 출력
                     if (command.ExecuteNonQuery() == 1)
                     {
@@ -53,7 +54,8 @@ namespace Timetable
                 {
                     MessageBox.Show("들어가지 않았습니다");
                 }
-                }catch (Exception ex)
+            }
+            catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
