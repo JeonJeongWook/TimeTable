@@ -92,10 +92,6 @@ namespace Timetable
                 p_backColor.BackColor = cd_backcolor.Color;
                 backcolor = p_backColor.BackColor;
             }
-            else
-            {
-
-            }
         }
 
         //폰트색 변경
@@ -107,10 +103,6 @@ namespace Timetable
                 p_fontColor.BackColor = cd_fontcolor.Color;
                 fontcolor = p_fontColor.BackColor;
             }
-            else
-            {
-
-            }
         }
 
         //해당 행을 클릭할 시 텍스트
@@ -121,6 +113,7 @@ namespace Timetable
                 tb_classN.Text = listView1.SelectedItems[0].SubItems[0].Text;
                 tb_professor.Text = listView1.SelectedItems[0].SubItems[1].Text;
                 tb_place.Text = listView1.SelectedItems[0].SubItems[2].Text;
+                checkBox1.Checked = true;
             }
         }
 
@@ -128,19 +121,26 @@ namespace Timetable
         //https://freeprog.tistory.com/232
         private void button1_Click(object sender, EventArgs e)
         {
-            classN = tb_classN.Text;
-            professor = tb_professor.Text;
-            place = tb_place.Text;
+            if (!tb_classN.Text.Equals(""))
+            {
+                classN = tb_classN.Text;
+                professor = tb_professor.Text;
+                place = tb_place.Text;
 
-            //lvi = new ListViewItem(new string[] { classN, professor, place });
-            lvi = new ListViewItem(new string[] { classN, professor, place });
-            listView1.Items.Add(lvi);
-            tb_classN.Text = "";
-            tb_professor.Text = "";
-            tb_place.Text = "";
+                //lvi = new ListViewItem(new string[] { classN, professor, place });
+                lvi = new ListViewItem(new string[] { classN, professor, place });
+                listView1.Items.Add(lvi);
+                tb_classN.Text = "";
+                tb_professor.Text = "";
+                tb_place.Text = "";
 
-            //string insertQuery = "INSERT INTO time(id, className, professor, place, backColor, fontColor, timeRow, timeCol)" +
-            //    "VALUES('" + Login.id + "','" + classN + "','" + professor+ "','" + place + "','" + backcolor + "','" + fontcolor + "','" +  + "','" + asdf"';)"; //쿼리 
+                //string insertQuery = "INSERT INTO time(id, className, professor, place, backColor, fontColor, timeRow, timeCol)" +
+                //    "VALUES('" + Login.id + "','" + classN + "','" + professor+ "','" + place + "','" + backcolor + "','" + fontcolor + "','" +  + "','" + asdf"';)"; //쿼리 
+            }
+            else
+            {
+                MessageBox.Show("수업명을 적어주세요");
+            }
         }
 
         //listview1에 선택된 행 삭제
@@ -174,7 +174,7 @@ namespace Timetable
                 insertContents(cell[0], cell[1]);
             }
             else
-                MessageBox.Show("수업을 클릭해 주세요");
+                MessageBox.Show("수업리스트에서 수업을 클릭해 주세요");
         }
 
         //내용, 배경 넣기
@@ -185,8 +185,11 @@ namespace Timetable
             {
                 dic_panels[cell[2]].BackColor = backcolor;          //배경색
                 dic_panels[cell[2]].ForeColor = fontcolor;          //글자색
-                   
-                dic_labels[cell[2]].Text = classN;                  //글자넣기
+                if (checkBox1.Checked == true)
+                {
+                    dic_labels[cell[2]].Text = tb_classN.Text;                  //글자넣기
+                    checkBox1.Checked = false;
+                }
             }
             else
             {
@@ -229,50 +232,6 @@ namespace Timetable
             cell = new int[3] { celCol, celRow, plus };
             return new Point(col, row);
         }
-
-        //private void p_mon1_Click(object sender, EventArgs e)
-        //{
-        //    //insertContents();
-        //}
-
-        ////테이블 레이아웃패널 클릭 시 좌표 검색
-        //private void tableLayoutPanel1_Click(object sender, EventArgs e)
-        //{
-        //    var cellPos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
-        //    //MessageBox.Show(cellPos.Value+"");
-        //    MessageBox.Show("tablelayoutPanel : " + cellPos);
-
-        //    //해당 셀 컬러 삭제 후 추가
-        //    cellcolors.Remove(new Point(celRow, celCol));
-        //    cellcolors.Add(new Point(celRow, celCol), backcolor);
-        //    //cell_RePaint(celCol, celRow);
-        //}
-
-        ////셀 생성시 그리기
-        //private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
-        //{
-        //    if (cellcolors.Keys.Contains(new Point(e.Column, e.Row)))
-        //        using (SolidBrush brush = new SolidBrush(cellcolors[new Point(e.Column, e.Row)]))
-        //            e.Graphics.FillRectangle(brush, e.CellBounds);
-        //    else
-        //        using (SolidBrush brush = new SolidBrush(SystemColors.ControlDark))
-        //            e.Graphics.FillRectangle(brush, e.CellBounds);
-        //}
-
-        ////테이블 기본 배경색 변경
-        //private void Main_Load(object sender, EventArgs e)
-        //{
-        //    for(int i = 0; i < 10; i++)
-        //    {
-        //        for (int j = 0; j < 5; j++)
-        //        {
-        //            cellcolors.Add(new Point(j, i), SystemColors.Control);
-        //        }
-        //    }
-        //}
-
-
-
     }
 }
 /*표
