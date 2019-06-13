@@ -14,7 +14,7 @@ namespace Timetable
 {
     public partial class Login : Form
     {
-        public static string name;
+        public static string name, id;
         MySqlConnection connection = new MySqlConnection("Server=localhost;Database=timetable;Uid=root;Pwd=1234;");
         MySqlDataReader rdr;
         public Login()
@@ -48,6 +48,7 @@ namespace Timetable
                     string user_id = (string)rdr["id"];
                     string user_password = (string)rdr["password"];
                     name = (string)rdr["name"];
+                    id = (string)rdr["id"];
 
                     if (password.Equals(user_password))
                     {
