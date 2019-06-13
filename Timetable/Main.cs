@@ -44,16 +44,15 @@ namespace Timetable
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    //
                     ab = ("panels[" + i + "," + j + "]").ToString();
                     panels[i, j] = new Panel();
                     panels[i, j].Name = ab;
-                    panels[i, j].BackColor = BackColor;
+                    panels[i, j].BackColor = SystemColors.Control;
                     panels[i, j].Dock = DockStyle.Fill;
                     panels[i, j].Margin = new Padding(0, 0, 0, 0);
 
                     labels[i, j] = new Label();
-                    labels[i, j].Text = i + "_" + j;
+                    //labels[i, j].Text = i + "_" + j;
                     labels[i, j].Margin = new Padding(3, 3, 0, 0);
 
                     panels[i, j].Controls.Add(labels[i, j]);
@@ -140,8 +139,8 @@ namespace Timetable
             tb_professor.Text = "";
             tb_place.Text = "";
 
-            string insertQuery = "INSERT INTO time(id, className, professor, place, backColor, fontColor, timeRow, timeCol)" +
-                "VALUES('" + Login.id + "','" + classN + "','" + professor+ "','" + place + "','" + backcolor + "','" + fontcolor + "','" +  + "','" + asdf"';)"; //쿼리 
+            //string insertQuery = "INSERT INTO time(id, className, professor, place, backColor, fontColor, timeRow, timeCol)" +
+            //    "VALUES('" + Login.id + "','" + classN + "','" + professor+ "','" + place + "','" + backcolor + "','" + fontcolor + "','" +  + "','" + asdf"';)"; //쿼리 
         }
 
         //listview1에 선택된 행 삭제
@@ -167,21 +166,35 @@ namespace Timetable
         //셀을 클릭할 시
         new void Click(object sender, EventArgs e)
         {
-            var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
-            
-            //cell[0] = 행 , cell[1] = 열 , cell[2] = 행+열
-            insertContents(cell[0], cell[1]);
+            if (!tb_classN.Text.Equals(""))
+            {
+                var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
+
+                //cell[0] = 행 , cell[1] = 열 , cell[2] = 행+열
+                insertContents(cell[0], cell[1]);
+            }
+            else
+                MessageBox.Show("수업을 클릭해 주세요");
         }
 
         //내용, 배경 넣기
         void insertContents(int row, int col)
         {
             cell[2] = row * 10 + col;
+            if(dic_panels[cell[2]].BackColor == SystemColors.Control)
+            {
+                dic_panels[cell[2]].BackColor = backcolor;          //배경색
+                dic_panels[cell[2]].ForeColor = fontcolor;          //글자색
+                   
+                dic_labels[cell[2]].Text = classN;                  //글자넣기
+            }
+            else
+            {
+                dic_panels[cell[2]].BackColor = SystemColors.Control;
+                dic_labels[cell[2]].Text = "";
+            }
 
-            dic_panels[cell[2]].BackColor = backcolor;
-            dic_panels[cell[2]].ForeColor = fontcolor;
-
-            dic_labels[cell[2]].Text = classN;
+            
         }
 
         private void tableLayoutPanel1_Click(object sender, EventArgs e)
