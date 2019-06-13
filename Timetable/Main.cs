@@ -14,6 +14,7 @@ namespace Timetable
 {
     public partial class Main : Form
     {
+        MySqlConnection connection = new MySqlConnection("Server=localhost;Database=timetable;Uid=root;Pwd=1234;");
         Panel[,] panels = new Panel[5, 10];
         Label[,] labels = new Label[5, 10];
         Dictionary<int, Panel> dic_panels = new Dictionary<int, Panel>();
@@ -138,6 +139,9 @@ namespace Timetable
             tb_classN.Text = "";
             tb_professor.Text = "";
             tb_place.Text = "";
+
+            string insertQuery = "INSERT INTO time(id, className, professor, place, backColor, fontColor, timeRow, timeCol)" +
+                "VALUES('" + Login.id + "','" + classN + "','" + professor+ "','" + place + "','" + backcolor + "','" + fontcolor + "','" +  + "','" + asdf"';)"; //쿼리 
         }
 
         //listview1에 선택된 행 삭제
