@@ -244,32 +244,28 @@ namespace Timetable
             {
                 dic_labels[cell[2]].Text = tb_classN.Text;
                 checkBox1.Checked = false;
-                MessageBox.Show("t_row :: " + t_row + "t_col :: " + t_col);
-                string insertQuery = "INSERT INTO class(id, className, t_row, t_col) " +
-                    "VALUES('" + Login.id + "','" + classN + "','" + t_row + "','" + t_col + "');";
-                connection.Open();
-                /*
-                 * 값이 행,열 테이블에 안들어감
-                 * 
-                 */
-                MySqlCommand command = new MySqlCommand(insertQuery, connection);
-                try
-                {
-                    if (command.ExecuteNonQuery() == 1)
-                    {
-                        MessageBox.Show("값이 들어갔습니다");
-                    }
-                    else
-                    {
-                        MessageBox.Show("안들어갔습니다");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                connection.Close();
+
+                
             }
+            string insertQuery = "INSERT INTO time(id, className, t_row, t_col) VALUES('" + Login.id + "','" + classN + "','" + t_row + "','" + t_col + "');";
+            connection.Open();
+            try
+            {
+                MySqlCommand command = new MySqlCommand(insertQuery, connection);
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show("값이 들어갔습니다");
+                }
+                else
+                {
+                    MessageBox.Show("안들어갔습니다");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+                connection.Close();
         }
 
 
