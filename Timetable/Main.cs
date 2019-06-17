@@ -22,7 +22,7 @@ namespace Timetable
         ListViewItem lvi = new ListViewItem(new string[] { });
         Color backcolor = Color.LightCyan;
         Color fontcolor = Color.Black;
-        String classN, professor, place;
+        string classN, professor, place, id;
         int plus = 0;
         int[] cell;
         //Dictionary<Poi0nt, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
@@ -31,6 +31,8 @@ namespace Timetable
         {
             InitializeComponent();
             lb_name.Text = Login.name;
+            id = Login.id;
+
         }
 
         //생성
@@ -121,12 +123,32 @@ namespace Timetable
 
                 lvi = new ListViewItem(new string[] { classN, professor, place });
                 listView1.Items.Add(lvi);
+                //string insertQuery = "INSERT INTO class(id, className, professor, place, backColor, fontColor)" +
+                //                    "VALUES('" + Login.id + "','" + classN + "','" + professor + "','" + place + "','" + backcolor + "','" + fontcolor + "');"; //쿼리 
+                string insertQuery = "INSERT INTO class(id, className, professor, place, backColor, fontColor)" +
+                    "VALUES('" + Login.id + "','" + classN + "','" + professor + "','" + place + "','" + backcolor.ToString() + "','" + fontcolor.ToString() + "');";
+                connection.Open();
+                MySqlCommand command = new MySqlCommand(insertQuery, connection);
+
+                //값 삽입후 초기화
                 tb_classN.Text = "";
                 tb_professor.Text = "";
                 tb_place.Text = "";
-
-                //string insertQuery = "INSERT INTO time(id, className, professor, place, backColor, fontColor, timeRow, timeCol)" +
-                //    "VALUES('" + Login.id + "','" + classN + "','" + professor+ "','" + place + "','" + backcolor + "','" + fontcolor + "','" +  + "','" + asdf"';)"; //쿼리 
+                try
+                {
+                    if(command.ExecuteNonQuery() == 1)
+                    {
+                        MessageBox.Show("값이 들어갔습니다");
+                    }
+                    else
+                    {
+                        MessageBox.Show("안들어갔습니다");
+                    }
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                connection.Close();
             }
             else
             {
@@ -172,7 +194,7 @@ namespace Timetable
         new void MouseClick(object sender, MouseEventArgs e)
         {
             var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
-            MessageBox.Show(cellpos + "");
+            //MessageBox.Show(cellpos + "");
             //좌클릭시 색깔 적용
             if (e.Button == MouseButtons.Left)
             {
@@ -180,7 +202,7 @@ namespace Timetable
                 if (!tb_classN.Text.Equals(""))
                 {
                     //cell[0] = 행 , cell[1] = 열 , cell[2] = 행+열
-                    MessageBox.Show("행 : " + cell[0] + "열 : " + cell[1]);
+                    //MessageBox.Show("행 : " + cell[0] + "열 : " + cell[1]);
                     insertCheck(cell[0], cell[1]);
                 }
                 else
@@ -199,9 +221,7 @@ namespace Timetable
         //내용이 들어가있는지 확인
         void insertCheck(int row, int col)
         {
-
-
-            MessageBox.Show("행 : " + cell[0] + "/열 : " + cell[1] + "/합 : " + cell[2]);
+            //MessageBox.Show("행 : " + cell[0] + "/열 : " + cell[1] + "/합 : " + cell[2]);
             //패널의 배경색이 기본색일 경우 다른색 변환
             if (dic_panels[cell[2]].BackColor == SystemColors.Control)
             {
@@ -216,6 +236,11 @@ namespace Timetable
                 checkBox1.Checked = true;
             }
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            listView1.Clear();
         }
 
         public void insertContents(int[] cell)
@@ -254,8 +279,8 @@ namespace Timetable
                 h -= heights[i];
 
             int col = i + 1;
-            MessageBox.Show("GetRowColIndex : row " + row);
-            MessageBox.Show("GetRowColIndex : col " + col);
+            //MessageBox.Show("GetRowColIndex : row " + row);
+            //MessageBox.Show("GetRowColIndex : col " + col);
 
             cell = new int[3] { row, col, plus };
             cell[2] = row * 10 + col;
@@ -273,6 +298,22 @@ namespace Timetable
  * 
  * 표에서 좌클릭 - 수업명 넣기(수업명 텍스트 박스가 채워져 있을경우)
  * 표에서 우클릭 - 내용 지우기
+ * ---------------------------
+ * user 테이블
  * 
+ * 회원가입창에서
+ * 아이디, 비밀번호, 이름을 입력 후 회원가입 버튼 누를 시
+ * DB에 저장
+ * ---------------------------
+ * class 테이블
  * 
+ * 추가버튼 누르면
+ * user 이름으로 아이디를 가져와서
+ * 아이디, 수업명, 교수명, 장소, 배경색, 글자색
+ * DB에 저장
+ * ---------------------------
+ * time 테이블
+ * 
+ * 해당 셀을 클릭하면 행, 열값을 가져와서
+ * 아이디, 수업명, 행, 열을 저장
  */

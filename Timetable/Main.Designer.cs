@@ -532,6 +532,7 @@
             this.button4.TabIndex = 9;
             this.button4.Text = "리스트 초기화";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Main
             // 

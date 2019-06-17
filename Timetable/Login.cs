@@ -27,15 +27,15 @@ namespace Timetable
         private void bt_login_Click(object sender, EventArgs e)
         {
             //텍스트 박스에 있는 값을 넣는 필드
-            string id, password;
+            string u_id, u_password;
             try
             {
                 connection.Open();
 
-                id = tb_id.Text;
-                password = tb_password.Text;
+                u_id = tb_id.Text;
+                u_password = tb_password.Text;
                 
-                string insertQuery = "select* from user where id = '" + id + "';";
+                string insertQuery = "select* from user where id = '" + u_id + "';";
                 MySqlCommand command = new MySqlCommand(insertQuery, connection);
                 rdr = command.ExecuteReader();
 
@@ -47,10 +47,10 @@ namespace Timetable
                 {
                     string user_id = (string)rdr["id"];
                     string user_password = (string)rdr["password"];
-                    name = (string)rdr["name"];
                     id = (string)rdr["id"];
+                    name = (string)rdr["name"];
 
-                    if (password.Equals(user_password))
+                    if (u_password.Equals(user_password))
                     {
                         MessageBox.Show(name + "님이 접속 하셨습니다.","로그인 성공");
                         Form main = new Main();
@@ -65,7 +65,7 @@ namespace Timetable
                 connection.Close();
                 this.tb_id.Text = "";
                 this.tb_password.Text = "";
-                this.ActiveControl = tb_id;
+                //this.ActiveControl = tb_id;
             }
             catch(Exception ex)
             {
