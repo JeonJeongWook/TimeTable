@@ -22,7 +22,7 @@ namespace Timetable
         ListViewItem lvi = new ListViewItem(new string[] { });
         Color backcolor = Color.LightCyan;
         Color fontcolor = Color.Black;
-        string classN, professor, place, id;
+        string classN, professor, place, t_col, t_row;
         int plus = 0;
         int[] cell;
         //Dictionary<Poi0nt, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
@@ -31,8 +31,6 @@ namespace Timetable
         {
             InitializeComponent();
             lb_name.Text = Login.name;
-            id = Login.id;
-
         }
 
         //생성
@@ -85,6 +83,7 @@ namespace Timetable
             {
                 p_backColor.BackColor = cd_backcolor.Color;
                 backcolor = p_backColor.BackColor;
+                checkBox1.Checked = true;
             }
         }
 
@@ -96,6 +95,7 @@ namespace Timetable
             {
                 p_fontColor.BackColor = cd_fontcolor.Color;
                 fontcolor = p_fontColor.BackColor;
+                checkBox1.Checked = true;
             }
         }
 
@@ -136,7 +136,7 @@ namespace Timetable
                 tb_place.Text = "";
                 try
                 {
-                    if(command.ExecuteNonQuery() == 1)
+                    if (command.ExecuteNonQuery() == 1)
                     {
                         MessageBox.Show("값이 들어갔습니다");
                     }
@@ -144,7 +144,8 @@ namespace Timetable
                     {
                         MessageBox.Show("안들어갔습니다");
                     }
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -176,19 +177,6 @@ namespace Timetable
             listView1.Items.Add(lvi);
         }
 
-        //셀을 클릭할 시 해당 색을 칠함
-        //new void Click(object sender, EventArgs e)
-        //{
-        //    if (!tb_classN.Text.Equals(""))
-        //    {
-        //        var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
-
-        //        //cell[0] = 행 , cell[1] = 열 , cell[2] = 행+열
-        //        insertContents(cell[0], cell[1]);
-        //    }
-        //    else
-        //        MessageBox.Show("수업리스트에서 수업을 클릭해 주세요");
-        //}
 
         //좌클릭, 우클릭 확인
         new void MouseClick(object sender, MouseEventArgs e)
@@ -201,8 +189,8 @@ namespace Timetable
                 //MessageBox.Show("좌클릭 했습니다.");
                 if (!tb_classN.Text.Equals(""))
                 {
-                    //cell[0] = 행 , cell[1] = 열 , cell[2] = 행+열
-                    //MessageBox.Show("행 : " + cell[0] + "열 : " + cell[1]);
+                    //cell[0] = 열 , cell[1] = 행 , cell[2] = 열+행
+                    MessageBox.Show("열 : " + cell[0] + "행 : " + cell[1]);
                     insertCheck(cell[0], cell[1]);
                 }
                 else
@@ -233,7 +221,6 @@ namespace Timetable
             {
                 dic_panels[cell[2]].BackColor = SystemColors.Control;
                 dic_labels[cell[2]].Text = "";
-                checkBox1.Checked = true;
             }
 
         }
@@ -249,14 +236,42 @@ namespace Timetable
             dic_panels[cell[2]].BackColor = backcolor;
             dic_panels[cell[2]].ForeColor = fontcolor;
 
+            t_row = cell[1].ToString();
+            t_col = cell[0].ToString();
+
             //체크된 상태면 한번 클릭후 해제
             if (checkBox1.Checked == true)
             {
                 dic_labels[cell[2]].Text = tb_classN.Text;
                 checkBox1.Checked = false;
+                MessageBox.Show("t_row :: " + t_row + "t_col :: " + t_col);
+                string insertQuery = "INSERT INTO class(id, className, t_row, t_col) " +
+                    "VALUES('" + Login.id + "','" + classN + "','" + t_row + "','" + t_col + "');";
+                connection.Open();
+                /*
+                 * 값이 행,열 테이블에 안들어감
+                 * 
+                 */
+                MySqlCommand command = new MySqlCommand(insertQuery, connection);
+                try
+                {
+                    if (command.ExecuteNonQuery() == 1)
+                    {
+                        MessageBox.Show("값이 들어갔습니다");
+                    }
+                    else
+                    {
+                        MessageBox.Show("안들어갔습니다");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                connection.Close();
             }
-
         }
+
 
         //해당하는 테이블 레이아웃 클릭시
         //행*10 + 열
@@ -284,8 +299,14 @@ namespace Timetable
 
             cell = new int[3] { row, col, plus };
             cell[2] = row * 10 + col;
-            return new Point(col, row);
+            MessageBox.Show("cell[0] : " + cell[0] + " , cell[1] : " + cell[1] + ", cell[2] : " + cell[2]);
+            return new Point(row, col);
         }
+
+        //void insertDB(String work, String sql)
+        //{
+        //    if(work == login)
+        //}
     }
 }
 /* 클릭 시간표
@@ -316,4 +337,8 @@ namespace Timetable
  * 
  * 해당 셀을 클릭하면 행, 열값을 가져와서
  * 아이디, 수업명, 행, 열을 저장
+ * 
+ * 리스트 뷰에 DB뿌려주기
+ * http://blog.naver.com/PostView.nhn?blogId=gkrtjs2020&logNo=50136001833
+ * 
  */
