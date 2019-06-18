@@ -258,6 +258,10 @@ namespace Timetable
             tb_classN.Text = "";
             tb_professor.Text = "";
             tb_place.Text = "";
+            back_R = back_G = back_B = 255;
+            font_R = font_G = font_B = 0;
+            p_backColor.BackColor = Color.FromArgb(back_R, back_G, back_B);
+            p_fontColor.BackColor = Color.FromArgb(font_R, font_G, font_B);
         }
 
 
@@ -365,7 +369,7 @@ namespace Timetable
             //우클릭시
             if (e.Button == MouseButtons.Right)
             {
-                string insertQuery = "DELETE FROM time WHERE id = '" + Login.id + "' and className = '" + classN + "' and t_col = '" + t_col + "' and t_row = '" + t_row + "'";
+                string insertQuery = "DELETE FROM time WHERE id = '" + Login.id + "' and t_col = '" + t_col + "' and t_row = '" + t_row + "'";
                 int result = Query(insertQuery, "우클릭 작업 중 ");
                 if (result == 1)
                 {
