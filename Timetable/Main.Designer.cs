@@ -69,8 +69,8 @@
             this.lb_name = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.btn_tableClear = new System.Windows.Forms.Button();
-            this.btn_listClear = new System.Windows.Forms.Button();
+            this.btn_Clear = new System.Windows.Forms.Button();
+            this.btn_tbClear = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -356,7 +356,7 @@
             // 
             // p_backColor
             // 
-            this.p_backColor.BackColor = System.Drawing.Color.LightCyan;
+            this.p_backColor.BackColor = System.Drawing.Color.White;
             this.p_backColor.Location = new System.Drawing.Point(121, 114);
             this.p_backColor.Name = "p_backColor";
             this.p_backColor.Size = new System.Drawing.Size(27, 26);
@@ -515,33 +515,33 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // btn_tableClear
+            // btn_Clear
             // 
-            this.btn_tableClear.Location = new System.Drawing.Point(566, 530);
-            this.btn_tableClear.Name = "btn_tableClear";
-            this.btn_tableClear.Size = new System.Drawing.Size(132, 37);
-            this.btn_tableClear.TabIndex = 9;
-            this.btn_tableClear.Text = "표 초기화";
-            this.btn_tableClear.UseVisualStyleBackColor = true;
-            this.btn_tableClear.Click += new System.EventHandler(this.btn_tableClear_Click);
+            this.btn_Clear.Location = new System.Drawing.Point(566, 530);
+            this.btn_Clear.Name = "btn_Clear";
+            this.btn_Clear.Size = new System.Drawing.Size(275, 37);
+            this.btn_Clear.TabIndex = 9;
+            this.btn_Clear.Text = "초기화";
+            this.btn_Clear.UseVisualStyleBackColor = true;
+            this.btn_Clear.Click += new System.EventHandler(this.btn_listClear_Click);
             // 
-            // btn_listClear
+            // btn_tbClear
             // 
-            this.btn_listClear.Location = new System.Drawing.Point(709, 530);
-            this.btn_listClear.Name = "btn_listClear";
-            this.btn_listClear.Size = new System.Drawing.Size(132, 37);
-            this.btn_listClear.TabIndex = 9;
-            this.btn_listClear.Text = "리스트 초기화";
-            this.btn_listClear.UseVisualStyleBackColor = true;
-            this.btn_listClear.Click += new System.EventHandler(this.btn_listClear_Click);
+            this.btn_tbClear.Location = new System.Drawing.Point(820, 229);
+            this.btn_tbClear.Name = "btn_tbClear";
+            this.btn_tbClear.Size = new System.Drawing.Size(32, 91);
+            this.btn_tbClear.TabIndex = 6;
+            this.btn_tbClear.Text = "비우기";
+            this.btn_tbClear.UseVisualStyleBackColor = true;
+            this.btn_tbClear.Click += new System.EventHandler(this.btn_tbClear_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 623);
-            this.Controls.Add(this.btn_listClear);
-            this.Controls.Add(this.btn_tableClear);
+            this.Controls.Add(this.btn_tbClear);
+            this.Controls.Add(this.btn_Clear);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.lb_name);
             this.Controls.Add(this.listView1);
@@ -608,9 +608,9 @@
         private System.Windows.Forms.Label lb_name;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btn_tableClear;
-        private System.Windows.Forms.Button btn_listClear;
+        private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btn_tbClear;
     }
 }
 

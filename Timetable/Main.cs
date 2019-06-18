@@ -21,7 +21,7 @@ namespace Timetable
         Dictionary<int, Panel> dic_panels = new Dictionary<int, Panel>();
         Dictionary<int, Label> dic_labels = new Dictionary<int, Label>();
         ListViewItem lvi = new ListViewItem(new string[] { });
-        Color backcolor = Color.LightCyan;
+        Color backcolor = Color.White;
         Color fontcolor = Color.Black;
         string classN, professor, place, t_col, t_row;
         int back_R, back_G, back_B, font_R, font_G, font_B;
@@ -83,7 +83,7 @@ namespace Timetable
                 }
             }
 
-            //메인 열릴 때 classDB읽고 listview에 뿌려주기
+            //메인 열릴 때 class테이블 읽고 listview에 뿌려주기
             try
             {
                 string insertQuery = "SELECT * FROM class WHERE id='" + Login.id + "';";
@@ -100,7 +100,6 @@ namespace Timetable
 
                         lvi = new ListViewItem(new string[] { db_className, db_professor, db_place });
                         listView1.Items.Add(lvi);
-
                     }
                 }
                 else
@@ -114,11 +113,11 @@ namespace Timetable
             }
             rdr.Close();
             connection.Close();
-            
-            //time테이블에 있는 데이터 표에 넣어주기
+
+            //time테이블에 있는 행,열 좌표 넣어주기
             try
             {
-                string insertQuery = "select * from time WHERE id = '" + Login.id + "' ORDER BY className, t_col, t_row ASC;";
+                string insertQuery = "SELECT * FROM time WHERE id = '" + Login.id + "' ORDER BY className, t_col, t_row ASC;";
                 connection.Open();
                 MySqlCommand command = new MySqlCommand(insertQuery, connection);
                 rdr = command.ExecuteReader();
@@ -126,10 +125,9 @@ namespace Timetable
                 {
                     while (rdr.Read())
                     {
-                        MessageBox.Show("읽기");
                         string db_className = (string)rdr["className"];
-                        string db_t_row = (string)rdr["t_row"];
                         string db_t_col = (string)rdr["t_col"];
+                        string db_t_row = (string)rdr["t_row"];
                         int db_back_R = (int)rdr["back_R"];
                         int db_back_G = (int)rdr["back_G"];
                         int db_back_B = (int)rdr["back_B"];
@@ -137,9 +135,9 @@ namespace Timetable
                         int db_font_G = (int)rdr["font_G"];
                         int db_font_B = (int)rdr["font_B"];
 
-                        MessageBox.Show("RGB :: " + db_back_R + "/" + db_back_G+ "/" +db_back_B);
-                        int key = int.Parse(db_t_row)*10 + int.Parse(db_t_col);
-                        MessageBox.Show(key + "");
+                        MessageBox.Show("back_R :: " + back_R + "/ back_G :: " + back_G + " /back_B :: " + back_B);
+                        int key = int.Parse(db_t_row)+ int.Parse(db_t_col)*10;
+                        MessageBox.Show("key 값 :: " + key);
 
                         //fromRGB 써서 값 전달
                         dic_panels[key].BackColor = Color.FromArgb(db_back_R, db_back_G, db_back_B);
@@ -153,13 +151,13 @@ namespace Timetable
                 }
                 rdr.Close();
                 connection.Close();
-                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
 
@@ -207,8 +205,62 @@ namespace Timetable
                 place = tb_place.Text;
 
                 checkBox1.Checked = true;
+
+                //해당 수업 클릭시 rgb값을 패널에 넣어줌
+                try
+                {
+                    string insertQuery = "select * from class WHERE id = '" + Login.id + "' and className = '" + classN + "';";
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand(insertQuery, connection);
+                    rdr = command.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            MessageBox.Show("rgb값 패널에 넣기");
+                            int db_back_R = (int)rdr["back_R"];
+                            int db_back_G = (int)rdr["back_G"];
+                            int db_back_B = (int)rdr["back_B"];
+                            int db_font_R = (int)rdr["font_R"];
+                            int db_font_G = (int)rdr["font_G"];
+                            int db_font_B = (int)rdr["font_B"];
+                            MessageBox.Show("RGB :: " + db_back_R + "/" + db_back_G + "/" + db_back_B);
+
+                            p_backColor.BackColor = Color.FromArgb(db_back_R, db_back_G, db_back_B);
+                            p_fontColor.ForeColor = Color.FromArgb(db_font_R, db_font_G, db_font_B);
+
+                            back_R = db_back_R;
+                            back_G = db_back_G;
+                            back_B = db_back_B;
+                            font_R = db_font_R;
+                            font_G = db_font_G;
+                            font_B = db_font_B;
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("입력된 데이터가 없습니다");
+                    }
+                    rdr.Close();
+                    connection.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
+
+        private void btn_tbClear_Click(object sender, EventArgs e)
+        {
+            tb_classN.Text = "";
+            tb_professor.Text = "";
+            tb_place.Text = "";
+        }
+
+
 
         //[추가하기 버튼] - 수업명, 교수명, 장소, 시간을 리스트 뷰에 추가
         private void button1_Click(object sender, EventArgs e)
@@ -236,7 +288,7 @@ namespace Timetable
                 else
                     MessageBox.Show("오류");
 
-                
+
             }
             else
             {
@@ -247,14 +299,18 @@ namespace Timetable
         //[삭제하기 버튼] - 선택된 시간 리스트 뷰에서 삭제
         private void button2_Click(object sender, EventArgs e)
         {
-            string insertQuery = "DELETE FROM class WHERE className='"+ classN +"';";
+            string insertQuery = "DELETE FROM class WHERE id='" + Login.id + "' and className = '" + classN + "';";
+            MessageBox.Show(insertQuery);
             int result = Query(insertQuery, "삭제하기 버튼");
-            int index = listView1.FocusedItem.Index;
-            listView1.Items.RemoveAt(index);
+            if (result == 1)
+            {
+                int index = listView1.FocusedItem.Index;
+                listView1.Items.RemoveAt(index);
 
-            tb_classN.Text = "";
-            tb_professor.Text = "";
-            tb_place.Text = "";
+                tb_classN.Text = "";
+                tb_professor.Text = "";
+                tb_place.Text = "";
+            }
         }
 
         //[복사하기 버튼] - 복사할 시 수업명, 교수명, 장소명 텍스트 박스는 삭제되지 않음
@@ -272,21 +328,20 @@ namespace Timetable
             string insertQuery = "DELETE FROM class WHERE id = '" + Login.id + "';";
             int result = Query(insertQuery, "리스트 클리어 버튼 ");
             if (result == 1)
-                listView1.Clear();
+            {
+                listView1.Items.Clear();
+                
+                for (int i = 0; i < 50; i++)
+                {
+                    dic_panels[i].BackColor = SystemColors.Control;
+                    dic_labels[i].Text = "";
+                }
+            }
             else
                 MessageBox.Show("오류");
 
         }
 
-        private void btn_tableClear_Click(object sender, EventArgs e)
-        {
-            for(int i = 0; i<50; i++)
-            {
-                dic_panels[i].BackColor = SystemColors.Control;
-                dic_labels[i].Text = "";
-
-            }
-        }
 
         //좌클릭, 우클릭 확인
         new void MouseClick(object sender, MouseEventArgs e)
@@ -310,7 +365,7 @@ namespace Timetable
             //우클릭시
             if (e.Button == MouseButtons.Right)
             {
-                string insertQuery = "DELETE FROM time where id = '" + Login.id + "' and className = '" + classN + "' and t_row = '" + t_row + "' and t_col = '" + t_col + "'";
+                string insertQuery = "DELETE FROM time WHERE id = '" + Login.id + "' and className = '" + classN + "' and t_col = '" + t_col + "' and t_row = '" + t_row + "'";
                 int result = Query(insertQuery, "우클릭 작업 중 ");
                 if (result == 1)
                 {
@@ -331,9 +386,10 @@ namespace Timetable
             //패널의 배경색이 기본색일 경우 다른색 변환
             if (dic_panels[cell[2]].BackColor == SystemColors.Control)
             {
-                string insertQuery = "INSERT INTO time(id, className, t_row, t_col, back_R, back_G, back_B, font_R, font_G, font_B) " +
+                string insertQuery = "INSERT INTO time(id, className, t_col, t_row, back_R, back_G, back_B, font_R, font_G, font_B) " +
                     "VALUES('" + Login.id + "','" + classN + "','" + t_col + "','" + t_row + "'," + back_R + "," + back_G + "," + back_B + "," + font_R + "," + font_G + "," + font_B + ");";
-                int result = Query(insertQuery,"행, 열 삽입");
+                MessageBox.Show(insertQuery);
+                int result = Query(insertQuery, "행, 열 삽입");
                 if (result == 1)
                     insertContents(cell);
                 else
@@ -370,7 +426,7 @@ namespace Timetable
                 checkBox1.Checked = false;
             }
 
-            
+
         }
 
 
@@ -418,7 +474,7 @@ namespace Timetable
                 }
                 else
                 {
-                    MessageBox.Show(work+"중 오류 발생@@@@@@, 값 안들어감");
+                    MessageBox.Show(work + "중 오류 발생@@@@@@, 값 안들어감");
                     connection.Close();
                     return 0;   //실패
                 }
@@ -431,6 +487,7 @@ namespace Timetable
             }
 
         }
+
     }
 }
 /* 클릭 시간표
@@ -470,4 +527,6 @@ namespace Timetable
  * 
  * 리스트 뷰 사용법
  * https://freeprog.tistory.com/232
+ * 
+ * 리스트뷰 클릭하면 색 가져오기
  */
