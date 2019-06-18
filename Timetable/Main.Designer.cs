@@ -69,8 +69,8 @@
             this.lb_name = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.btn_clear = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_tableClear = new System.Windows.Forms.Button();
+            this.btn_listClear = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -515,32 +515,33 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // btn_clear
+            // btn_tableClear
             // 
-            this.btn_clear.Location = new System.Drawing.Point(566, 530);
-            this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(132, 37);
-            this.btn_clear.TabIndex = 9;
-            this.btn_clear.Text = "표 초기화";
-            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_tableClear.Location = new System.Drawing.Point(566, 530);
+            this.btn_tableClear.Name = "btn_tableClear";
+            this.btn_tableClear.Size = new System.Drawing.Size(132, 37);
+            this.btn_tableClear.TabIndex = 9;
+            this.btn_tableClear.Text = "표 초기화";
+            this.btn_tableClear.UseVisualStyleBackColor = true;
+            this.btn_tableClear.Click += new System.EventHandler(this.btn_tableClear_Click);
             // 
-            // button4
+            // btn_listClear
             // 
-            this.button4.Location = new System.Drawing.Point(709, 530);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(132, 37);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "리스트 초기화";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btn_listClear.Location = new System.Drawing.Point(709, 530);
+            this.btn_listClear.Name = "btn_listClear";
+            this.btn_listClear.Size = new System.Drawing.Size(132, 37);
+            this.btn_listClear.TabIndex = 9;
+            this.btn_listClear.Text = "리스트 초기화";
+            this.btn_listClear.UseVisualStyleBackColor = true;
+            this.btn_listClear.Click += new System.EventHandler(this.btn_listClear_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 623);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.btn_clear);
+            this.Controls.Add(this.btn_listClear);
+            this.Controls.Add(this.btn_tableClear);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.lb_name);
             this.Controls.Add(this.listView1);
@@ -607,8 +608,8 @@
         private System.Windows.Forms.Label lb_name;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btn_clear;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_tableClear;
+        private System.Windows.Forms.Button btn_listClear;
         private System.Windows.Forms.Label label11;
     }
 }
