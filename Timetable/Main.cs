@@ -23,8 +23,8 @@ namespace Timetable
         ListViewItem lvi = new ListViewItem(new string[] { });
         Color backcolor = Color.LightCyan;
         Color fontcolor = Color.Black;
-        Color rgb_backcolor;
-        string classN, professor, place, t_col, t_row, m_backcolor, m_fontcolor;
+        string classN, professor, place, t_col, t_row;
+        int back_R, back_G, back_B, font_R, font_G, font_B;
         int plus = 0;
         int[] cell;
         //Dictionary<Poi0nt, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
@@ -39,6 +39,13 @@ namespace Timetable
         {
             //패널, 레이블 생성
             string ab;
+            back_R = backcolor.R;
+            back_G = backcolor.G;
+            back_B = backcolor.B;
+            font_R = fontcolor.R;
+            font_G = fontcolor.G;
+            font_B = fontcolor.B;
+
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -90,8 +97,6 @@ namespace Timetable
                         string db_className = (string)rdr["className"];
                         string db_professor = (string)rdr["professor"];
                         string db_place = (string)rdr["place"];
-                        m_backcolor = (string)rdr["backColor"];
-                        m_fontcolor = (string)rdr["fontColor"];
 
                         lvi = new ListViewItem(new string[] { db_className, db_professor, db_place });
                         listView1.Items.Add(lvi);
@@ -113,7 +118,7 @@ namespace Timetable
             //time테이블에 있는 데이터 표에 넣어주기
             try
             {
-                string insertQuery = "select * from time WHERE id = '" + Login.id + "' ORDER BY t_col, t_row ASC;";
+                string insertQuery = "select * from time WHERE id = '" + Login.id + "' ORDER BY className, t_col, t_row ASC;";
                 connection.Open();
                 MySqlCommand command = new MySqlCommand(insertQuery, connection);
                 rdr = command.ExecuteReader();
@@ -121,15 +126,25 @@ namespace Timetable
                 {
                     while (rdr.Read())
                     {
+                        MessageBox.Show("읽기");
                         string db_className = (string)rdr["className"];
                         string db_t_row = (string)rdr["t_row"];
                         string db_t_col = (string)rdr["t_col"];
+                        int db_back_R = (int)rdr["back_R"];
+                        int db_back_G = (int)rdr["back_G"];
+                        int db_back_B = (int)rdr["back_B"];
+                        int db_font_R = (int)rdr["font_R"];
+                        int db_font_G = (int)rdr["font_G"];
+                        int db_font_B = (int)rdr["font_B"];
 
+                        MessageBox.Show("RGB :: " + db_back_R + "/" + db_back_G+ "/" +db_back_B);
+                        int key = int.Parse(db_t_row)*10 + int.Parse(db_t_col);
+                        MessageBox.Show(key + "");
 
-                        MessageBox.Show("행 :: " + db_t_row + "/ 열 :: " + db_t_col);
-                        int key = int.Parse(db_t_row) + int.Parse(db_t_col)*10;
-                        MessageBox.Show(m_backcolor);
-                        dic_panels[key].BackColor = backcolor;
+                        //fromRGB 써서 값 전달
+                        dic_panels[key].BackColor = Color.FromArgb(db_back_R, db_back_G, db_back_B);
+                        dic_panels[key].ForeColor = Color.FromArgb(db_font_R, db_font_G, db_font_B);
+                        dic_labels[key].Text = db_className;
                     }
                 }
                 else
@@ -157,6 +172,9 @@ namespace Timetable
                 p_backColor.BackColor = cd_backcolor.Color;
                 backcolor = p_backColor.BackColor;
                 checkBox1.Checked = true;
+                back_R = backcolor.R;
+                back_G = backcolor.G;
+                back_B = backcolor.B;
             }
         }
 
@@ -169,6 +187,9 @@ namespace Timetable
                 p_fontColor.BackColor = cd_fontcolor.Color;
                 fontcolor = p_fontColor.BackColor;
                 checkBox1.Checked = true;
+                font_R = fontcolor.R;
+                font_G = fontcolor.G;
+                font_B = fontcolor.B;
             }
         }
 
@@ -190,7 +211,6 @@ namespace Timetable
         }
 
         //[추가하기 버튼] - 수업명, 교수명, 장소, 시간을 리스트 뷰에 추가
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (!tb_classN.Text.Equals(""))
@@ -199,8 +219,10 @@ namespace Timetable
                 professor = tb_professor.Text;
                 place = tb_place.Text;
 
-                string insertQuery = "INSERT INTO class(id, className, professor, place, backColor, fontColor)" +
-                    "VALUES('" + Login.id + "','" + classN + "','" + professor + "','" + place + "','" + backcolor.ToString() + "','" + fontcolor.ToString() + "');";
+
+                string insertQuery = "INSERT INTO class(id, className, professor, place, back_R, back_G, back_B, font_R, font_G, font_B) " +
+                    "VALUES('" + Login.id + "','" + classN + "','" + professor + "','" + place + "'," + back_R + "," + back_G + "," + back_B + "," + font_R + "," + font_G + "," + font_B + ");";
+                MessageBox.Show(insertQuery);
                 int result = Query(insertQuery, "추가버튼 작업 중");
                 if (result == 1)
                 {
@@ -309,7 +331,8 @@ namespace Timetable
             //패널의 배경색이 기본색일 경우 다른색 변환
             if (dic_panels[cell[2]].BackColor == SystemColors.Control)
             {
-                string insertQuery = "INSERT INTO time(id, className, t_row, t_col) VALUES('" + Login.id + "','" + classN + "','" + t_row + "','" + t_col + "');";
+                string insertQuery = "INSERT INTO time(id, className, t_row, t_col, back_R, back_G, back_B, font_R, font_G, font_B) " +
+                    "VALUES('" + Login.id + "','" + classN + "','" + t_col + "','" + t_row + "'," + back_R + "," + back_G + "," + back_B + "," + font_R + "," + font_G + "," + font_B + ");";
                 int result = Query(insertQuery,"행, 열 삽입");
                 if (result == 1)
                     insertContents(cell);
