@@ -23,7 +23,8 @@ namespace Timetable
         ListViewItem lvi = new ListViewItem(new string[] { });
         Color backcolor = Color.LightCyan;
         Color fontcolor = Color.Black;
-        string classN, professor, place, t_col, t_row;
+        Color rgb_backcolor;
+        string classN, professor, place, t_col, t_row, m_backcolor, m_fontcolor;
         int plus = 0;
         int[] cell;
         //Dictionary<Poi0nt, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
@@ -76,7 +77,6 @@ namespace Timetable
             }
 
             //메인 열릴 때 classDB읽고 listview에 뿌려주기
-            //time테이블에 있는 데이터 표에 넣어주기
             try
             {
                 string insertQuery = "SELECT * FROM class WHERE id='" + Login.id + "';";
@@ -89,10 +89,47 @@ namespace Timetable
                     {
                         string db_className = (string)rdr["className"];
                         string db_professor = (string)rdr["professor"];
-                        string db_place= (string)rdr["place"];
+                        string db_place = (string)rdr["place"];
+                        m_backcolor = (string)rdr["backColor"];
+                        m_fontcolor = (string)rdr["fontColor"];
 
-                        lvi = new ListViewItem(new string[] { db_className, db_professor, db_place});
+                        lvi = new ListViewItem(new string[] { db_className, db_professor, db_place });
                         listView1.Items.Add(lvi);
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("입력된 데이터가 없습니다");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            rdr.Close();
+            connection.Close();
+            
+            //time테이블에 있는 데이터 표에 넣어주기
+            try
+            {
+                string insertQuery = "select * from time WHERE id = '" + Login.id + "' ORDER BY t_col, t_row ASC;";
+                connection.Open();
+                MySqlCommand command = new MySqlCommand(insertQuery, connection);
+                rdr = command.ExecuteReader();
+                if (rdr.HasRows)
+                {
+                    while (rdr.Read())
+                    {
+                        string db_className = (string)rdr["className"];
+                        string db_t_row = (string)rdr["t_row"];
+                        string db_t_col = (string)rdr["t_col"];
+
+
+                        MessageBox.Show("행 :: " + db_t_row + "/ 열 :: " + db_t_col);
+                        int key = int.Parse(db_t_row) + int.Parse(db_t_col)*10;
+                        MessageBox.Show(m_backcolor);
+                        dic_panels[key].BackColor = backcolor;
                     }
                 }
                 else
@@ -101,12 +138,15 @@ namespace Timetable
                 }
                 rdr.Close();
                 connection.Close();
+                
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            
         }
+
 
         //배경색 변경
         private void p_backColor_Click(object sender, EventArgs e)
@@ -150,7 +190,7 @@ namespace Timetable
         }
 
         //[추가하기 버튼] - 수업명, 교수명, 장소, 시간을 리스트 뷰에 추가
-        //https://freeprog.tistory.com/232
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (!tb_classN.Text.Equals(""))
@@ -159,33 +199,22 @@ namespace Timetable
                 professor = tb_professor.Text;
                 place = tb_place.Text;
 
-                lvi = new ListViewItem(new string[] { classN, professor, place });
-                listView1.Items.Add(lvi);
                 string insertQuery = "INSERT INTO class(id, className, professor, place, backColor, fontColor)" +
                     "VALUES('" + Login.id + "','" + classN + "','" + professor + "','" + place + "','" + backcolor.ToString() + "','" + fontcolor.ToString() + "');";
-                connection.Open();
-                MySqlCommand command = new MySqlCommand(insertQuery, connection);
+                int result = Query(insertQuery, "추가버튼 작업 중");
+                if (result == 1)
+                {
+                    lvi = new ListViewItem(new string[] { classN, professor, place });
+                    listView1.Items.Add(lvi);
+                    //값 삽입후 초기화
+                    tb_classN.Text = "";
+                    tb_professor.Text = "";
+                    tb_place.Text = "";
+                }
+                else
+                    MessageBox.Show("오류");
 
-                //값 삽입후 초기화
-                tb_classN.Text = "";
-                tb_professor.Text = "";
-                tb_place.Text = "";
-                try
-                {
-                    if (command.ExecuteNonQuery() == 1)
-                    {
-                        MessageBox.Show("값이 들어갔습니다");
-                    }
-                    else
-                    {
-                        MessageBox.Show("안들어갔습니다");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                connection.Close();
+                
             }
             else
             {
@@ -196,6 +225,8 @@ namespace Timetable
         //[삭제하기 버튼] - 선택된 시간 리스트 뷰에서 삭제
         private void button2_Click(object sender, EventArgs e)
         {
+            string insertQuery = "DELETE FROM class WHERE className='"+ classN +"';";
+            int result = Query(insertQuery, "삭제하기 버튼");
             int index = listView1.FocusedItem.Index;
             listView1.Items.RemoveAt(index);
 
@@ -217,25 +248,12 @@ namespace Timetable
         private void btn_listClear_Click(object sender, EventArgs e)
         {
             string insertQuery = "DELETE FROM class WHERE id = '" + Login.id + "';";
-            connection.Open();
-            try
-            {
-                MySqlCommand command = new MySqlCommand(insertQuery, connection);
-                if (command.ExecuteNonQuery() == 1)
-                {
-                    MessageBox.Show("값이 들어갔습니다");
-                }
-                else
-                {
-                    MessageBox.Show("안들어갔습니다");
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            connection.Close();
-            listView1.Clear();
+            int result = Query(insertQuery, "리스트 클리어 버튼 ");
+            if (result == 1)
+                listView1.Clear();
+            else
+                MessageBox.Show("오류");
+
         }
 
         private void btn_tableClear_Click(object sender, EventArgs e)
@@ -254,11 +272,10 @@ namespace Timetable
             var cellpos = GetRowColIndex(tableLayoutPanel1, tableLayoutPanel1.PointToClient(Cursor.Position));
             t_row = cell[1].ToString();
             t_col = cell[0].ToString();
-            //MessageBox.Show(cellpos + "");
-            //좌클릭시 색깔 적용
+
+            //좌클릭시 내용 넣기(배경, 폰트색)
             if (e.Button == MouseButtons.Left)
             {
-                //MessageBox.Show("좌클릭 했습니다.");
                 if (!tb_classN.Text.Equals(""))
                 {
                     //cell[0] = 열 , cell[1] = 행 , cell[2] = 열+행
@@ -271,9 +288,16 @@ namespace Timetable
             //우클릭시
             if (e.Button == MouseButtons.Right)
             {
-                dic_panels[cell[2]].BackColor = SystemColors.Control;
-                dic_labels[cell[2]].Text = "";
-                checkBox1.Checked = true;
+                string insertQuery = "DELETE FROM time where id = '" + Login.id + "' and className = '" + classN + "' and t_row = '" + t_row + "' and t_col = '" + t_col + "'";
+                int result = Query(insertQuery, "우클릭 작업 중 ");
+                if (result == 1)
+                {
+                    dic_panels[cell[2]].BackColor = SystemColors.Control;
+                    dic_labels[cell[2]].Text = "";
+                    checkBox1.Checked = true;
+                }
+                else
+                    MessageBox.Show("오류");
             }
         }
 
@@ -285,54 +309,26 @@ namespace Timetable
             //패널의 배경색이 기본색일 경우 다른색 변환
             if (dic_panels[cell[2]].BackColor == SystemColors.Control)
             {
-                insertContents(cell);
                 string insertQuery = "INSERT INTO time(id, className, t_row, t_col) VALUES('" + Login.id + "','" + classN + "','" + t_row + "','" + t_col + "');";
-                connection.Open();
-                try
-                {
-                    MySqlCommand command = new MySqlCommand(insertQuery, connection);
-                    if (command.ExecuteNonQuery() == 1)
-                    {
-                        MessageBox.Show("값이 들어갔습니다");
-                    }
-                    else
-                    {
-                        MessageBox.Show("안들어갔습니다");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                connection.Close();
+                int result = Query(insertQuery,"행, 열 삽입");
+                if (result == 1)
+                    insertContents(cell);
+                else
+                    MessageBox.Show("오류");
             }
 
             //배경색이 있을 경우 배경색 제거
             else
             {
-                dic_panels[cell[2]].BackColor = SystemColors.Control;
-                dic_labels[cell[2]].Text = "";
-
                 string insertQuery = "DELETE FROM time where id = '" + Login.id + "' and className = '" + classN + "' and t_row = '" + t_row + "' and t_col = '" + t_col + "'";
-                connection.Open();
-                MessageBox.Show(insertQuery);
-                try
+                int result = Query(insertQuery, "행, 열 삭제");
+                if (result == 1)
                 {
-                    MySqlCommand command = new MySqlCommand(insertQuery, connection);
-                    if (command.ExecuteNonQuery() == 1)
-                    {
-                        MessageBox.Show("값이 삭제됨");
-                    }
-                    else
-                    {
-                        MessageBox.Show("오류;;");
-                    }
+                    dic_panels[cell[2]].BackColor = SystemColors.Control;
+                    dic_labels[cell[2]].Text = "";
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                connection.Close();
+                else
+                    MessageBox.Show("오류");
             }
 
         }
@@ -385,6 +381,33 @@ namespace Timetable
             return new Point(row, col);
         }
 
+        int Query(String insertQuery, String work)
+        {
+            connection.Open();
+            try
+            {
+                MySqlCommand command = new MySqlCommand(insertQuery, connection);
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show(work + "작업중 정상 작동, 값 들어감");
+                    connection.Close();
+                    return 1;   //성공
+                }
+                else
+                {
+                    MessageBox.Show(work+"중 오류 발생@@@@@@, 값 안들어감");
+                    connection.Close();
+                    return 0;   //실패
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                connection.Close();
+                return -1;
+            }
+
+        }
     }
 }
 /* 클릭 시간표
@@ -422,4 +445,6 @@ namespace Timetable
  * 리스트 뷰에 DB뿌려주기
  * http://blog.naver.com/PostView.nhn?blogId=gkrtjs2020&logNo=50136001833
  * 
+ * 리스트 뷰 사용법
+ * https://freeprog.tistory.com/232
  */
