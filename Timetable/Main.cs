@@ -39,12 +39,7 @@ namespace Timetable
         {
             //패널, 레이블 생성
             string ab;
-            back_R = backcolor.R;
-            back_G = backcolor.G;
-            back_B = backcolor.B;
-            font_R = fontcolor.R;
-            font_G = fontcolor.G;
-            font_B = fontcolor.B;
+            
 
             for (int i = 0; i < 5; i++)
             {
@@ -224,7 +219,6 @@ namespace Timetable
                             int db_font_R = (int)rdr["font_R"];
                             int db_font_G = (int)rdr["font_G"];
                             int db_font_B = (int)rdr["font_B"];
-                            MessageBox.Show("RGB :: " + db_back_R + "/" + db_back_G + "/" + db_back_B);
 
                             p_backColor.BackColor = Color.FromArgb(db_back_R, db_back_G, db_back_B);
                             p_fontColor.ForeColor = Color.FromArgb(db_font_R, db_font_G, db_font_B);
@@ -235,7 +229,7 @@ namespace Timetable
                             font_R = db_font_R;
                             font_G = db_font_G;
                             font_B = db_font_B;
-
+                            MessageBox.Show("backRGB :: " + back_R + "/" + back_G + "/" + back_B);
                         }
                     }
                     else
@@ -275,7 +269,7 @@ namespace Timetable
                 professor = tb_professor.Text;
                 place = tb_place.Text;
 
-
+                setBackColor(p_backColor.BackColor);
                 string insertQuery = "INSERT INTO class(id, className, professor, place, back_R, back_G, back_B, font_R, font_G, font_B) " +
                     "VALUES('" + Login.id + "','" + classN + "','" + professor + "','" + place + "'," + back_R + "," + back_G + "," + back_B + "," + font_R + "," + font_G + "," + font_B + ");";
                 MessageBox.Show(insertQuery);
@@ -393,7 +387,7 @@ namespace Timetable
                 string insertQuery = "INSERT INTO time(id, className, t_col, t_row, back_R, back_G, back_B, font_R, font_G, font_B) " +
                     "VALUES('" + Login.id + "','" + classN + "','" + t_col + "','" + t_row + "'," + back_R + "," + back_G + "," + back_B + "," + font_R + "," + font_G + "," + font_B + ");";
                 MessageBox.Show(insertQuery);
-                int result = Query(insertQuery, "행, 열 삽입");
+                int result = Query(insertQuery, "시간표에 표시하기");
                 if (result == 1)
                     insertContents(cell);
                 else
@@ -420,6 +414,7 @@ namespace Timetable
         public void insertContents(int[] cell)
         {
             //배경, 글자색 넣기
+            setBackColor(p_backColor.BackColor);
             dic_panels[cell[2]].BackColor = backcolor;
             dic_panels[cell[2]].ForeColor = fontcolor;
 
@@ -470,7 +465,7 @@ namespace Timetable
             try
             {
                 MySqlCommand command = new MySqlCommand(insertQuery, connection);
-                if (command.ExecuteNonQuery() == 1)
+                if (command.ExecuteNonQuery() > 0)
                 {
                     MessageBox.Show(work + "작업중 정상 작동, 값 들어감");
                     connection.Close();
@@ -478,7 +473,7 @@ namespace Timetable
                 }
                 else
                 {
-                    MessageBox.Show(work + "중 오류 발생@@@@@@, 값 안들어감");
+                    MessageBox.Show(work + "중 오류 발생@@@@@@, 값 안들어감" + "쿼리문 :: " + insertQuery);
                     connection.Close();
                     return 0;   //실패
                 }
@@ -491,7 +486,20 @@ namespace Timetable
             }
 
         }
-
+        // setBackColor(배경으로 등록할 색)
+        void setBackColor(Color backcolor)
+        {
+            back_R = backcolor.R;
+            back_G = backcolor.G;
+            back_B = backcolor.B;
+            this.backcolor = Color.FromArgb(back_R, back_G, back_B);
+        }
+        //void setFontColor(Color fontcolor)
+        //{
+        //    font_R = int.Parse(fontcolor.R.ToString());
+        //    font_G = int.Parse(fontcolor.G.ToString());
+        //    font_B = int.Parse(fontcolor.B.ToString());
+        //}
     }
 }
 /* 클릭 시간표
