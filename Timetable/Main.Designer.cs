@@ -531,7 +531,7 @@
             this.btn_tbClear.Name = "btn_tbClear";
             this.btn_tbClear.Size = new System.Drawing.Size(32, 91);
             this.btn_tbClear.TabIndex = 6;
-            this.btn_tbClear.Text = "비우기";
+            this.btn_tbClear.Text = "값  비우기";
             this.btn_tbClear.UseVisualStyleBackColor = true;
             this.btn_tbClear.Click += new System.EventHandler(this.btn_tbClear_Click);
             // 

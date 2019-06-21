@@ -27,7 +27,12 @@ namespace Timetable
         int back_R, back_G, back_B, font_R, font_G, font_B;
         int plus = 0;
         int[] cell;
-        //Dictionary<Poi0nt, Color> cellcolors = new Dictionary<Point, Color>();   //색상저장
+        int preback_R = 0;
+        int preback_G = 0;
+        int preback_B = 0;
+        int prefont_R = 0;
+        int prefont_G = 0;
+        int prefont_B = 0;
 
         public Main()
         {
@@ -360,6 +365,7 @@ namespace Timetable
             t_row = cell[1].ToString();
             t_col = cell[0].ToString();
 
+
             //좌클릭시 내용 넣기(배경, 폰트색)
             if (e.Button == MouseButtons.Left)
             {
@@ -371,6 +377,15 @@ namespace Timetable
                 else
                     MessageBox.Show("수업리스트에서 수업을 클릭해 주세요");
             }
+
+            //클릭시 색 넣기
+            preback_R = p_backColor.BackColor.R;
+            preback_G = p_backColor.BackColor.G;
+            preback_B = p_backColor.BackColor.B;
+            prefont_R = p_fontColor.BackColor.R;
+            prefont_G = p_fontColor.BackColor.G;
+            prefont_B = p_fontColor.BackColor.B;
+            ;
 
             //우클릭시
             if (e.Button == MouseButtons.Right)
@@ -408,15 +423,50 @@ namespace Timetable
             //배경색이 있을 경우 배경색 제거
             else
             {
-                string insertQuery = "DELETE FROM time where id = '" + Login.id + "' and className = '" + classN + "' and t_row = '" + t_row + "' and t_col = '" + t_col + "'";
-                int result = Query(insertQuery, "행, 열 삭제");
+                string insertQuery = "SELECT * FROM time WHERE t_col = '" + t_col + "' and t_row = '" + t_row + "';";
+                connection.Open();
+                MySqlCommand command = new MySqlCommand(insertQuery, connection);
+                rdr = command.ExecuteReader();
+                if (rdr.HasRows)
+                {
+                    while (rdr.Read())
+                    {
+                        preback_R = (int)rdr["back_R"];
+                        preback_G = (int)rdr["back_G"];
+                        preback_B = (int)rdr["back_B"];
+                        prefont_R = (int)rdr["font_R"];
+                        prefont_G = (int)rdr["font_G"];
+                        prefont_B = (int)rdr["font_B"];
+                    }
+                }
+                MessageBox.Show("preback_RGB :: " + preback_R + "" + preback_G + "" + preback_B);
+                connection.Close();
+
+                string insertQuery1 = "UPDATE time SET back_R = " + p_backColor.BackColor.R + " and back_G = " + p_backColor.BackColor.G + " and " + p_backColor.BackColor.B + " and font_R = " + p_fontColor.BackColor.R + " and font_G = " + p_fontColor.BackColor.G + " and font_B = " + p_fontColor.BackColor.B + " " +
+                    "WHERE back_R = " + preback_R + " and back_G = " + preback_G + " and back_B = " + preback_B + " and font_R = " + prefont_R + " and font_G = " + prefont_G + " and font_B = " + prefont_B + "; ";
+                MessageBox.Show("쿼리문" + insertQuery1);
+                int result = Query(insertQuery1, "행, 열 삭제");
                 if (result == 1)
                 {
-                    dic_panels[cell[2]].BackColor = SystemColors.Control;
-                    dic_labels[cell[2]].Text = "";
+                    dic_panels[cell[2]].BackColor = Color.FromArgb(back_R, back_G, back_B);
+                    dic_panels[cell[2]].ForeColor = Color.FromArgb(font_R, font_G, font_B);
+                    dic_labels[cell[2]].Text = classN;
                 }
                 else
+                {
                     MessageBox.Show("오류");
+                }
+                //string insertQuery = "DELETE FROM time where id = '" + Login.id + "' and className = '" + classN + "' and t_row = '" + t_row + "' and t_col = '" + t_col + "'";
+                //int result = Query(insertQuery, "행, 열 삭제");
+                //if (result == 1)
+                //{
+                //    dic_panels[cell[2]].BackColor = SystemColors.Control;
+                //    dic_labels[cell[2]].Text = "";
+                //}
+                //else
+                //{
+                //    MessageBox.Show("오류");
+                //}
             }
 
         }
