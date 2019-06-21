@@ -53,7 +53,6 @@ namespace Timetable
                     panels[i, j].Margin = new Padding(0, 0, 0, 0);
 
                     labels[i, j] = new Label();
-
                     labels[i, j].Margin = new Padding(3, 3, 0, 0);
 
                     panels[i, j].Controls.Add(labels[i, j]);
@@ -99,7 +98,7 @@ namespace Timetable
                 }
                 else
                 {
-                    MessageBox.Show("입력된 데이터가 없습니다");
+                    MessageBox.Show("추가된 시간표가 없습니다");
                 }
             }
             catch (Exception ex)
@@ -130,9 +129,7 @@ namespace Timetable
                         int db_font_G = (int)rdr["font_G"];
                         int db_font_B = (int)rdr["font_B"];
 
-                        MessageBox.Show("back_R :: " + back_R + "/ back_G :: " + back_G + " /back_B :: " + back_B);
                         int key = int.Parse(db_t_row)+ int.Parse(db_t_col)*10;
-                        MessageBox.Show("key 값 :: " + key);
 
                         //fromRGB 써서 값 전달
                         dic_panels[key].BackColor = Color.FromArgb(db_back_R, db_back_G, db_back_B);
@@ -142,7 +139,7 @@ namespace Timetable
                 }
                 else
                 {
-                    MessageBox.Show("입력된 데이터가 없습니다");
+
                 }
                 rdr.Close();
                 connection.Close();
@@ -212,7 +209,6 @@ namespace Timetable
                     {
                         while (rdr.Read())
                         {
-                            MessageBox.Show("rgb값 패널에 넣기");
                             int db_back_R = (int)rdr["back_R"];
                             int db_back_G = (int)rdr["back_G"];
                             int db_back_B = (int)rdr["back_B"];
@@ -229,7 +225,7 @@ namespace Timetable
                     }
                     else
                     {
-                        MessageBox.Show("입력된 데이터가 없습니다");
+
                     }
                     rdr.Close();
                     connection.Close();
@@ -269,7 +265,6 @@ namespace Timetable
 
                 string insertQuery = "INSERT INTO class(id, className, professor, place, back_R, back_G, back_B, font_R, font_G, font_B) " +
                     "VALUES('" + Login.id + "','" + classN + "','" + professor + "','" + place + "'," + back_R + "," + back_G + "," + back_B + "," + font_R + "," + font_G + "," + font_B + ");";
-                MessageBox.Show(insertQuery);
                 int result = Query(insertQuery, "추가버튼 작업 중");
                 if (result == 1)
                 {
@@ -295,7 +290,6 @@ namespace Timetable
         private void button2_Click(object sender, EventArgs e)
         {
             string insertQuery = "DELETE FROM class WHERE id='" + Login.id + "' and className = '" + classN + "';";
-            MessageBox.Show(insertQuery);
             int result = Query(insertQuery, "삭제하기 버튼");
             if (result == 1)
             {
@@ -320,21 +314,42 @@ namespace Timetable
 
         private void btn_listClear_Click(object sender, EventArgs e)
         {
-            string insertQuery = "DELETE FROM class WHERE id = '" + Login.id + "';";
-            int result = Query(insertQuery, "리스트 클리어 버튼 ");
-            if (result == 1)
+            string insertQuery = "DELETE FROM time WHERE id = '" + Login.id + "';";
+            int result = Query(insertQuery, "time지우기");
+            if(result == 1)
             {
-                listView1.Items.Clear();
-                
-                for (int i = 0; i < 50; i++)
+                string insertQuery1 = "DELETE FROM class WHERE id = '" + Login.id + "';";
+                int result1 = Query(insertQuery1, "class지우기");
+                if(result1 == 1)
                 {
-                    dic_panels[i].BackColor = SystemColors.Control;
-                    dic_labels[i].Text = "";
+                    clearTime_List();
                 }
             }
             else
-                MessageBox.Show("오류");
+            {
+                string insertQuery2 = "DELETE FROM class WHERE id = '" + Login.id + "';";
+                int result2 = Query(insertQuery2, "class로 넘어가서 지우기");
+                if (result2 == 1)
+                {
+                    clearTime_List();
+                }
+            }
+            //string insertQuery = "DELETE FROM class WHERE id = '" + Login.id + "';";
+            //int result = Query(insertQuery, "리스트 클리어 버튼 ");
+            //if (result == 1)
+            //{
+            //listView1.Items.Clear();
 
+            //for (int i = 0; i < 50; i++)
+            //{
+            //    dic_panels[i].BackColor = SystemColors.Control;
+            //    dic_labels[i].Text = "";
+            //}
+            //}
+            //else
+            //{
+            //    MessageBox.Show("오류");
+            //}
         }
 
 
@@ -383,7 +398,6 @@ namespace Timetable
             {
                 string insertQuery = "INSERT INTO time(id, className, t_col, t_row, back_R, back_G, back_B, font_R, font_G, font_B) " +
                     "VALUES('" + Login.id + "','" + classN + "','" + t_col + "','" + t_row + "'," + back_R + "," + back_G + "," + back_B + "," + font_R + "," + font_G + "," + font_B + ");";
-                MessageBox.Show(insertQuery);
                 int result = Query(insertQuery, "시간표에 표시하기");
                 if (result == 1)
                     insertContents(cell);
@@ -440,19 +454,16 @@ namespace Timetable
             int i;
             for (i = widths.Length - 1; i >= 0 && point.X < w; i--)
                 w -= widths[i];
-
             int row = i + 1;
+
             int[] heights = tlp.GetRowHeights();
             for (i = heights.Length - 1; i >= 0 && point.Y < h; i--)
                 h -= heights[i];
-
             int col = i + 1;
-            //MessageBox.Show("GetRowColIndex : row " + row);
-            //MessageBox.Show("GetRowColIndex : col " + col);
 
             cell = new int[3] { row, col, plus };
             cell[2] = row * 10 + col;
-            MessageBox.Show("cell[0] : " + cell[0] + " , cell[1] : " + cell[1] + ", cell[2] : " + cell[2]);
+            //MessageBox.Show("cell[0] : " + cell[0] + " , cell[1] : " + cell[1] + ", cell[2] : " + cell[2]);
             return new Point(row, col);
         }
 
@@ -462,15 +473,13 @@ namespace Timetable
             try
             {
                 MySqlCommand command = new MySqlCommand(insertQuery, connection);
-                if (command.ExecuteNonQuery() > 0)
+                if (command.ExecuteNonQuery() > 0)//적용된 행의 개수라서 초기화 할때 ==1로 하면 오류가 나옴
                 {
-                    MessageBox.Show(work + "작업중 정상 작동, 값 들어감");
                     connection.Close();
                     return 1;   //성공
                 }
                 else
                 {
-                    MessageBox.Show(work + "중 오류 발생@@@@@@, 값 안들어감" + "쿼리문 :: " + insertQuery);
                     connection.Close();
                     return 0;   //실패
                 }
@@ -497,6 +506,17 @@ namespace Timetable
             font_G = fontcolor.G;
             font_B = fontcolor.B;
             this.fontcolor = Color.FromArgb(font_R, font_G, font_B);
+        }
+
+        void clearTime_List()
+        {
+            listView1.Items.Clear();
+
+            for (int i = 0; i < 50; i++)
+            {
+                dic_panels[i].BackColor = SystemColors.Control;
+                dic_labels[i].Text = "";
+            }
         }
     }
 }
