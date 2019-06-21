@@ -221,15 +221,10 @@ namespace Timetable
                             int db_font_B = (int)rdr["font_B"];
 
                             p_backColor.BackColor = Color.FromArgb(db_back_R, db_back_G, db_back_B);
-                            p_fontColor.ForeColor = Color.FromArgb(db_font_R, db_font_G, db_font_B);
+                            p_fontColor.BackColor = Color.FromArgb(db_font_R, db_font_G, db_font_B);
 
-                            back_R = db_back_R;
-                            back_G = db_back_G;
-                            back_B = db_back_B;
-                            font_R = db_font_R;
-                            font_G = db_font_G;
-                            font_B = db_font_B;
-                            MessageBox.Show("backRGB :: " + back_R + "/" + back_G + "/" + back_B);
+                            setBackColor(p_backColor.BackColor);
+                            setFontColor(p_fontColor.BackColor);
                         }
                     }
                     else
@@ -270,6 +265,8 @@ namespace Timetable
                 place = tb_place.Text;
 
                 setBackColor(p_backColor.BackColor);
+                setFontColor(p_fontColor.BackColor);
+
                 string insertQuery = "INSERT INTO class(id, className, professor, place, back_R, back_G, back_B, font_R, font_G, font_B) " +
                     "VALUES('" + Login.id + "','" + classN + "','" + professor + "','" + place + "'," + back_R + "," + back_G + "," + back_B + "," + font_R + "," + font_G + "," + font_B + ");";
                 MessageBox.Show(insertQuery);
@@ -494,12 +491,13 @@ namespace Timetable
             back_B = backcolor.B;
             this.backcolor = Color.FromArgb(back_R, back_G, back_B);
         }
-        //void setFontColor(Color fontcolor)
-        //{
-        //    font_R = int.Parse(fontcolor.R.ToString());
-        //    font_G = int.Parse(fontcolor.G.ToString());
-        //    font_B = int.Parse(fontcolor.B.ToString());
-        //}
+        void setFontColor(Color fontcolor)
+        {
+            font_R = fontcolor.R;
+            font_G = fontcolor.G;
+            font_B = fontcolor.B;
+            this.fontcolor = Color.FromArgb(font_R, font_G, font_B);
+        }
     }
 }
 /* 클릭 시간표
