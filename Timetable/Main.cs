@@ -309,7 +309,8 @@ namespace Timetable
 
         private void btn_viewManual_Click(object sender, EventArgs e)
         {
-
+            Form manual = new manual();
+            manual.Show();
         }
 
         private void btn_listClear_Click(object sender, EventArgs e)
