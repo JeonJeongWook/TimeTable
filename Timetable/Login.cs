@@ -65,7 +65,6 @@ namespace Timetable
                 connection.Close();
                 this.tb_id.Text = "";
                 this.tb_password.Text = "";
-                //this.ActiveControl = tb_id;
             }
             catch(Exception ex)
             {

@@ -68,9 +68,9 @@
             this.lv_place = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lb_name = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.btn_Clear = new System.Windows.Forms.Button();
             this.btn_tbClear = new System.Windows.Forms.Button();
+            this.btn_viewManual = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -282,7 +282,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(566, 416);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 41);
+            this.button1.Size = new System.Drawing.Size(130, 40);
             this.button1.TabIndex = 1;
             this.button1.Text = "추가하기";
             this.button1.UseVisualStyleBackColor = true;
@@ -290,9 +290,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(659, 416);
+            this.button2.Location = new System.Drawing.Point(731, 416);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 41);
+            this.button2.Size = new System.Drawing.Size(130, 40);
             this.button2.TabIndex = 2;
             this.button2.Text = "삭제하기";
             this.button2.UseVisualStyleBackColor = true;
@@ -300,6 +300,7 @@
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.p_fontColor);
             this.panel1.Controls.Add(this.label23);
@@ -505,21 +506,11 @@
             this.label25.TabIndex = 8;
             this.label25.Text = "님 환영합니다!";
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(752, 416);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 41);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "복사하기";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // btn_Clear
             // 
-            this.btn_Clear.Location = new System.Drawing.Point(566, 530);
+            this.btn_Clear.Location = new System.Drawing.Point(566, 477);
             this.btn_Clear.Name = "btn_Clear";
-            this.btn_Clear.Size = new System.Drawing.Size(275, 37);
+            this.btn_Clear.Size = new System.Drawing.Size(295, 42);
             this.btn_Clear.TabIndex = 9;
             this.btn_Clear.Text = "초기화";
             this.btn_Clear.UseVisualStyleBackColor = true;
@@ -535,11 +526,22 @@
             this.btn_tbClear.UseVisualStyleBackColor = true;
             this.btn_tbClear.Click += new System.EventHandler(this.btn_tbClear_Click);
             // 
+            // btn_viewManual
+            // 
+            this.btn_viewManual.Location = new System.Drawing.Point(566, 539);
+            this.btn_viewManual.Name = "btn_viewManual";
+            this.btn_viewManual.Size = new System.Drawing.Size(295, 30);
+            this.btn_viewManual.TabIndex = 11;
+            this.btn_viewManual.Text = "<사용법 보기>";
+            this.btn_viewManual.UseVisualStyleBackColor = true;
+            this.btn_viewManual.Click += new System.EventHandler(this.btn_viewManual_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(882, 623);
+            this.ClientSize = new System.Drawing.Size(882, 587);
+            this.Controls.Add(this.btn_viewManual);
             this.Controls.Add(this.btn_tbClear);
             this.Controls.Add(this.btn_Clear);
             this.Controls.Add(this.label25);
@@ -548,7 +550,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -607,10 +608,10 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label lb_name;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btn_tbClear;
+        private System.Windows.Forms.Button btn_viewManual;
     }
 }
 
