@@ -33,7 +33,7 @@ namespace Timetable
         int prefont_R = 0;
         int prefont_G = 0;
         int prefont_B = 0;
-
+        string preclassN = "";
         public Main()
         {
             InitializeComponent();
@@ -431,6 +431,7 @@ namespace Timetable
                 {
                     while (rdr.Read())
                     {
+                        preclassN = (string)rdr["className"];
                         preback_R = (int)rdr["back_R"];
                         preback_G = (int)rdr["back_G"];
                         preback_B = (int)rdr["back_B"];
@@ -442,9 +443,8 @@ namespace Timetable
                 MessageBox.Show("preback_RGB :: " + preback_R + "" + preback_G + "" + preback_B);
                 connection.Close();
 
-                string insertQuery1 = "UPDATE time SET back_R = " + p_backColor.BackColor.R + " and back_G = " + p_backColor.BackColor.G + " and " + p_backColor.BackColor.B + " and font_R = " + p_fontColor.BackColor.R + " and font_G = " + p_fontColor.BackColor.G + " and font_B = " + p_fontColor.BackColor.B + " " +
-                    "WHERE back_R = " + preback_R + " and back_G = " + preback_G + " and back_B = " + preback_B + " and font_R = " + prefont_R + " and font_G = " + prefont_G + " and font_B = " + prefont_B + "; ";
-                MessageBox.Show("쿼리문" + insertQuery1);
+                string insertQuery1 = "UPDATE time SET className = '" + classN + "', back_R = " + p_backColor.BackColor.R + ", back_G = " + p_backColor.BackColor.G + ", back_B = " + p_backColor.BackColor.B + ", font_R = " + p_fontColor.BackColor.R + ", font_G = " + p_fontColor.BackColor.G + ", font_B = " + p_fontColor.BackColor.B + " " +
+                    "WHERE id = '" + Login.id + "' and className = '" + preclassN + "' and back_R = " + preback_R + " and back_G = " + preback_G + " and back_B = " + preback_B + " and font_R = " + prefont_R + " and font_G = " + prefont_G + " and font_B = " + prefont_B + "; ";
                 int result = Query(insertQuery1, "행, 열 삭제");
                 if (result == 1)
                 {
@@ -519,6 +519,7 @@ namespace Timetable
 
         int Query(String insertQuery, String work)
         {
+            MessageBox.Show(insertQuery);
             connection.Open();
             try
             {
