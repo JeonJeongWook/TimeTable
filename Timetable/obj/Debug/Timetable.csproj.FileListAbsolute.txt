@@ -15,3 +15,4 @@ C:\Project\CSharpProject\Timetable\Timetable\bin\Debug\Google.Protobuf.dll
 C:\Project\CSharpProject\Timetable\Timetable\bin\Debug\BouncyCastle.Crypto.dll
 C:\Project\CSharpProject\Timetable\Timetable\bin\Debug\MySql.Data.xml
 C:\Project\CSharpProject\Timetable\Timetable\obj\Debug\Timetable.csproj.CopyComplete
+C:\Project\CSharpProject\Timetable\Timetable\obj\Debug\Timetable.manual.resources

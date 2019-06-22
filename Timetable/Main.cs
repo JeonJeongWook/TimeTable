@@ -307,14 +307,10 @@ namespace Timetable
             }
         }
 
-        //[복사하기 버튼] - 복사할 시 수업명, 교수명, 장소명 텍스트 박스는 삭제되지 않음
-        private void button3_Click(object sender, EventArgs e)
+        private void btn_viewManual_Click(object sender, EventArgs e)
         {
-            classN = tb_classN.Text;
-            professor = tb_professor.Text;
-            place = tb_place.Text;
-            lvi = new ListViewItem(new string[] { classN, professor, place });
-            listView1.Items.Add(lvi);
+            Form manual = new manual();
+            manual.Show();
         }
 
         private void btn_listClear_Click(object sender, EventArgs e)
@@ -339,22 +335,6 @@ namespace Timetable
                     clearTime_List();
                 }
             }
-            //string insertQuery = "DELETE FROM class WHERE id = '" + Login.id + "';";
-            //int result = Query(insertQuery, "리스트 클리어 버튼 ");
-            //if (result == 1)
-            //{
-            //listView1.Items.Clear();
-
-            //for (int i = 0; i < 50; i++)
-            //{
-            //    dic_panels[i].BackColor = SystemColors.Control;
-            //    dic_labels[i].Text = "";
-            //}
-            //}
-            //else
-            //{
-            //    MessageBox.Show("오류");
-            //}
         }
 
 
@@ -385,7 +365,6 @@ namespace Timetable
             prefont_R = p_fontColor.BackColor.R;
             prefont_G = p_fontColor.BackColor.G;
             prefont_B = p_fontColor.BackColor.B;
-            ;
 
             //우클릭시
             if (e.Button == MouseButtons.Right)
@@ -456,17 +435,6 @@ namespace Timetable
                 {
                     MessageBox.Show("오류");
                 }
-                //string insertQuery = "DELETE FROM time where id = '" + Login.id + "' and className = '" + classN + "' and t_row = '" + t_row + "' and t_col = '" + t_col + "'";
-                //int result = Query(insertQuery, "행, 열 삭제");
-                //if (result == 1)
-                //{
-                //    dic_panels[cell[2]].BackColor = SystemColors.Control;
-                //    dic_labels[cell[2]].Text = "";
-                //}
-                //else
-                //{
-                //    MessageBox.Show("오류");
-                //}
             }
 
         }
@@ -572,12 +540,11 @@ namespace Timetable
     }
 }
 /* 클릭 시간표
- * [추가하기 버튼] - 수업명, 교수명, 장소, 시간을 리스트 뷰에 추가
- * [삭제하기 버튼] - 선택된 시간 리스트 뷰에서 삭제
- * [복사하기 버튼] - 복사할 시 수업명, 교수명, 장소명 텍스트 박스는 삭제되지 않음
+ * [추가하기]버튼 - 수업명, 교수명, 장소, 시간을 수업리스트에 추가
+ * [삭제하기]버튼 - 선택된 시간 수업리스트에서 삭제
+ * [값 비우기]버튼 - 텍스트 박스의 값 지우기, 배경색, 글자색 기본값
  * 
- * [표 초기화] - 색칠한 모든 표의 색을 기본색으로 변경
- * [리스트 초기화] - 수업 리스트를 모두 삭제
+ * [초기화] - 표, 수업리스트의 모든 값을 제거
  * 
  * 표에서 좌클릭 - 수업명 넣기(수업명 텍스트 박스가 채워져 있을경우)
  * 표에서 우클릭 - 내용 지우기
@@ -608,6 +575,4 @@ namespace Timetable
  * 
  * 리스트 뷰 사용법
  * https://freeprog.tistory.com/232
- * 
- * 리스트뷰 클릭하면 색 가져오기
  */
