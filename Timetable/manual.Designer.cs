@@ -49,14 +49,14 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(718, 554);
+            this.panel1.Size = new System.Drawing.Size(663, 246);
             this.panel1.TabIndex = 1;
             // 
             // manual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 599);
+            this.ClientSize = new System.Drawing.Size(687, 269);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);

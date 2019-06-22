@@ -281,9 +281,9 @@ namespace Timetable
                     tb_place.Text = "";
                 }
                 else
+                {
                     MessageBox.Show("오류");
-
-
+                }
             }
             else
             {
@@ -309,8 +309,7 @@ namespace Timetable
 
         private void btn_viewManual_Click(object sender, EventArgs e)
         {
-            Form manual = new manual();
-            manual.Show();
+
         }
 
         private void btn_listClear_Click(object sender, EventArgs e)
@@ -355,7 +354,9 @@ namespace Timetable
                     insertCheck(cell[0], cell[1]);
                 }
                 else
+                {
                     MessageBox.Show("수업리스트에서 수업을 클릭해 주세요");
+                }
             }
 
             //클릭시 색 넣기
@@ -396,7 +397,9 @@ namespace Timetable
                 if (result == 1)
                     insertContents(cell);
                 else
+                {
                     MessageBox.Show("오류");
+                }
             }
 
             //배경색이 있을 경우 배경색 제거
