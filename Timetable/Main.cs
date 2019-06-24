@@ -406,7 +406,11 @@ namespace Timetable
             //배경색이 있을 경우 배경색 제거
             else
             {
-                string insertQuery = "SELECT * FROM time WHERE t_col = '" + t_col + "' and t_row = '" + t_row + "';";
+                /*  다른 시간표가 들어가있을 경우 바로 값이 들어가지 않음
+                 *  눌럿을때 해당 
+                 *  DB문제
+                 */ 
+                string insertQuery = "SELECT * FROM time WHERE id='"+Login.id+"' and t_col = '" + t_col + "' and t_row = '" + t_row + "';";
                 connection.Open();
                 MySqlCommand command = new MySqlCommand(insertQuery, connection);
                 rdr = command.ExecuteReader();
@@ -414,6 +418,8 @@ namespace Timetable
                 {
                     while (rdr.Read())
                     {
+                        t_col = (string)rdr["t_col"];
+                        t_row = (string)rdr["t_row"];
                         preclassN = (string)rdr["className"];
                         preback_R = (int)rdr["back_R"];
                         preback_G = (int)rdr["back_G"];
@@ -427,7 +433,7 @@ namespace Timetable
                 connection.Close();
 
                 string insertQuery1 = "UPDATE time SET className = '" + classN + "', back_R = " + p_backColor.BackColor.R + ", back_G = " + p_backColor.BackColor.G + ", back_B = " + p_backColor.BackColor.B + ", font_R = " + p_fontColor.BackColor.R + ", font_G = " + p_fontColor.BackColor.G + ", font_B = " + p_fontColor.BackColor.B + " " +
-                    "WHERE id = '" + Login.id + "' and className = '" + preclassN + "' and back_R = " + preback_R + " and back_G = " + preback_G + " and back_B = " + preback_B + " and font_R = " + prefont_R + " and font_G = " + prefont_G + " and font_B = " + prefont_B + "; ";
+                    "WHERE id = '" + Login.id + "' and t_col = '" + t_col + "'and t_row = '" + t_row + "' and className = '" + preclassN + "' and back_R = " + preback_R + " and back_G = " + preback_G + " and back_B = " + preback_B + " and font_R = " + prefont_R + " and font_G = " + prefont_G + " and font_B = " + prefont_B + "; ";
                 int result = Query(insertQuery1, "행, 열 삭제");
                 if (result == 1)
                 {
