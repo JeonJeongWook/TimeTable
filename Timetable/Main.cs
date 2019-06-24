@@ -25,15 +25,15 @@ namespace Timetable
         Color fontcolor = Color.Black;
         string classN, professor, place, t_col, t_row;
         int back_R, back_G, back_B, font_R, font_G, font_B;
-        int plus = 0;
+        string preclassN = "";
         int[] cell;
+        int plus = 0;
         int preback_R = 0;
         int preback_G = 0;
         int preback_B = 0;
         int prefont_R = 0;
         int prefont_G = 0;
         int prefont_B = 0;
-        string preclassN = "";
         public Main()
         {
             InitializeComponent();
@@ -96,7 +96,7 @@ namespace Timetable
                         string db_className = (string)rdr["className"];
                         string db_professor = (string)rdr["professor"];
                         string db_place = (string)rdr["place"];
-
+                        
                         lvi = new ListViewItem(new string[] { db_className, db_professor, db_place });
                         listView1.Items.Add(lvi);
                     }
