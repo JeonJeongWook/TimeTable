@@ -140,7 +140,6 @@ namespace Timetable
 
                         //fromRGB 써서 값 전달
                         dic_panels[key].BackColor = Color.FromArgb(db_back_R, db_back_G, db_back_B);
-                        MessageBox.Show("preclassN :: " + preclassN + " / db_className :: " + db_className);
                         if (!(preclassN == db_className) || preclassN.Equals(""))
                         {
                             dic_panels[key].ForeColor = Color.FromArgb(db_font_R, db_font_G, db_font_B);
@@ -436,7 +435,6 @@ namespace Timetable
                         prefont_B = (int)rdr["font_B"];
                     }
                 }
-                MessageBox.Show("preback_RGB :: " + preback_R + "" + preback_G + "" + preback_B);
                 connection.Close();
 
                 string insertQuery1 = "UPDATE time SET className = '" + classN + "', back_R = " + p_backColor.BackColor.R + ", back_G = " + p_backColor.BackColor.G + ", back_B = " + p_backColor.BackColor.B + ", font_R = " + p_fontColor.BackColor.R + ", font_G = " + p_fontColor.BackColor.G + ", font_B = " + p_fontColor.BackColor.B + " " +
@@ -498,13 +496,11 @@ namespace Timetable
 
             cell = new int[3] { row, col, plus };
             cell[2] = row * 10 + col;
-            //MessageBox.Show("cell[0] : " + cell[0] + " , cell[1] : " + cell[1] + ", cell[2] : " + cell[2]);
             return new Point(row, col);
         }
 
         int Query(String insertQuery, String work)
         {
-            MessageBox.Show(insertQuery);
             connection.Open();
             try
             {
