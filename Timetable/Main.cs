@@ -96,7 +96,7 @@ namespace Timetable
                         string db_className = (string)rdr["className"];
                         string db_professor = (string)rdr["professor"];
                         string db_place = (string)rdr["place"];
-                        
+
                         lvi = new ListViewItem(new string[] { db_className, db_professor, db_place });
                         listView1.Items.Add(lvi);
                     }
@@ -136,10 +136,17 @@ namespace Timetable
 
                         int key = int.Parse(db_t_row)+ int.Parse(db_t_col)*10;
 
+
+
                         //fromRGB 써서 값 전달
                         dic_panels[key].BackColor = Color.FromArgb(db_back_R, db_back_G, db_back_B);
-                        dic_panels[key].ForeColor = Color.FromArgb(db_font_R, db_font_G, db_font_B);
-                        dic_labels[key].Text = db_className;
+                        MessageBox.Show("preclassN :: " + preclassN + " / db_className :: " + db_className);
+                        if (!(preclassN == db_className) || preclassN.Equals(""))
+                        {
+                            dic_panels[key].ForeColor = Color.FromArgb(db_font_R, db_font_G, db_font_B);
+                            dic_labels[key].Text = db_className;
+                        }
+                        preclassN = db_className;
                     }
                 }
                 else
