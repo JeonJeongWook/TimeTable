@@ -25,15 +25,11 @@ namespace Timetable
         Color fontcolor = Color.Black;
         string classN, professor, place, t_col, t_row;
         int back_R, back_G, back_B, font_R, font_G, font_B;
-        string preclassN = "";
+        string preclassN;
         int[] cell;
         int plus = 0;
-        int preback_R = 0;
-        int preback_G = 0;
-        int preback_B = 0;
-        int prefont_R = 0;
-        int prefont_G = 0;
-        int prefont_B = 0;
+        int preback_R = 0, preback_G = 0, preback_B = 0, prefont_R = 0, prefont_G = 0, prefont_B = 0;
+        int prekey = 0;
         public Main()
         {
             InitializeComponent();
@@ -116,7 +112,7 @@ namespace Timetable
             //time테이블에 있는 행,열 좌표 넣어주기
             try
             {
-                string insertQuery = "SELECT * FROM time WHERE id = '" + Login.id + "' ORDER BY className, t_col, t_row ASC;";
+                string insertQuery = "SELECT * FROM time WHERE id = '" + Login.id + "' ORDER BY t_col, t_row ASC;";
                 connection.Open();
                 MySqlCommand command = new MySqlCommand(insertQuery, connection);
                 rdr = command.ExecuteReader();
@@ -135,17 +131,17 @@ namespace Timetable
                         int db_font_B = (int)rdr["font_B"];
 
                         int key = int.Parse(db_t_row)+ int.Parse(db_t_col)*10;
-
-
-
                         //fromRGB 써서 값 전달
                         dic_panels[key].BackColor = Color.FromArgb(db_back_R, db_back_G, db_back_B);
-                        if (!(preclassN == db_className) || preclassN.Equals(""))
+
+                        //이전 시간이 위에 있으면 텍스트는 빼기 / 위에랑 이름이 같지 않거나, 처음 값이거나, 
+                        if (!(preclassN == db_className) || preclassN.Equals("") || key-prekey>1)
                         {
                             dic_panels[key].ForeColor = Color.FromArgb(db_font_R, db_font_G, db_font_B);
                             dic_labels[key].Text = db_className;
                         }
                         preclassN = db_className;
+                        prekey = key;
                     }
                 }
                 else
@@ -154,7 +150,6 @@ namespace Timetable
                 }
                 rdr.Close();
                 connection.Close();
-
             }
             catch (Exception ex)
             {
@@ -288,7 +283,7 @@ namespace Timetable
                 }
                 else
                 {
-                    MessageBox.Show("오류");
+                    MessageBox.Show("추가하기 오류");
                 }
             }
             else
@@ -386,7 +381,7 @@ namespace Timetable
                     checkBox1.Checked = true;
                 }
                 else
-                    MessageBox.Show("오류");
+                    MessageBox.Show("삭제할 수업이 없습니다");
             }
         }
 
@@ -405,7 +400,7 @@ namespace Timetable
                     insertContents(cell);
                 else
                 {
-                    MessageBox.Show("오류");
+                    MessageBox.Show("수업 넣기 오류");
                 }
             }
 
