@@ -79,6 +79,7 @@
             this.tb_password.Name = "tb_password";
             this.tb_password.Size = new System.Drawing.Size(168, 25);
             this.tb_password.TabIndex = 4;
+            this.tb_password.UseSystemPasswordChar = true;
             // 
             // bt_goRegister
             // 
