@@ -71,6 +71,7 @@
             this.btn_Clear = new System.Windows.Forms.Button();
             this.btn_tbClear = new System.Windows.Forms.Button();
             this.btn_viewManual = new System.Windows.Forms.Button();
+            this.btn_logout = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -536,11 +537,22 @@
             this.btn_viewManual.UseVisualStyleBackColor = true;
             this.btn_viewManual.Click += new System.EventHandler(this.btn_viewManual_Click);
             // 
+            // btn_logout
+            // 
+            this.btn_logout.Location = new System.Drawing.Point(777, 46);
+            this.btn_logout.Name = "btn_logout";
+            this.btn_logout.Size = new System.Drawing.Size(75, 23);
+            this.btn_logout.TabIndex = 12;
+            this.btn_logout.Text = "로그아웃";
+            this.btn_logout.UseVisualStyleBackColor = true;
+            this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 587);
+            this.Controls.Add(this.btn_logout);
             this.Controls.Add(this.btn_viewManual);
             this.Controls.Add(this.btn_tbClear);
             this.Controls.Add(this.btn_Clear);
@@ -612,6 +624,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btn_tbClear;
         private System.Windows.Forms.Button btn_viewManual;
+        private System.Windows.Forms.Button btn_logout;
     }
 }
 

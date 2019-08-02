@@ -189,6 +189,14 @@ namespace Timetable
             }
         }
 
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            Close();
+            Form login = new Login();
+            login.Show();
+        }
+
+
         //해당 수업 리스트를 클릭할 시 텍스트 출력
         private void listView1_Click(object sender, EventArgs e)
         {
